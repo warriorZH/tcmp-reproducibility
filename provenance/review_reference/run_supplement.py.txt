@@ -1,0 +1,126 @@
+import os
+for name in ['OMP_NUM_THREADS','MKL_NUM_THREADS','OPENBLAS_NUM_THREADS']:os.environ[name]='4'
+import pathlib,json,hashlib,time,sys,traceback,subprocess,itertools
+import numpy as np
+from scipy import sparse
+import scipy,sklearn
+R=pathlib.Path(__file__).resolve().parent
+def read(p):return json.loads(pathlib.Path(p).read_text(encoding='utf8'))
+def write(name,v):
+ p=R/name;p.parent.mkdir(parents=True,exist_ok=True);tmp=p.with_suffix(p.suffix+'.tmp');tmp.write_text(json.dumps(v,indent=2,allow_nan=False),encoding='utf8');tmp.replace(p)
+def sha(p):
+ h=hashlib.sha256()
+ with open(p,'rb') as f:
+  while x:=f.read(8388608):h.update(x)
+ return h.hexdigest()
+P=read(R/'protocol.json');F=pathlib.Path(P['source_root'])
+def original_lock():
+ lock=read(F/'artifacts/run_lock.json')
+ for n,h in lock['files'].items():assert sha(F/n)==h,n
+ return lock
+def oscr(score,pred,t):
+ order=np.argsort(-score,kind='stable');ends=np.r_[np.flatnonzero(np.diff(score[order])!=0),len(t)-1];k=t[order]>=0;c=k&(pred[order]==t[order]);x=np.r_[0,np.cumsum(~k)[ends]/(~k).sum()];y=np.r_[0,np.cumsum(c)[ends]/k.sum()];return float(np.sum(np.diff(x)*(y[1:]+y[:-1])/2))
+def metrics(pred,t,score=None,cut=None,groups=None):
+ k=t>=0;rec=np.array([np.mean(pred[t==c]==c) for c in np.unique(t[k])]);v=dict(accuracy=float(np.mean(pred[k]==t[k])*100),macro_recall=float(rec.mean()*100),worst_recall=float(rec.min()*100),bottom_decile=float(np.sort(rec)[:max(1,len(rec)//10)].mean()*100))
+ if score is not None:
+  accept=score>=cut;v.update(known_coverage=float(np.mean(accept[k])),unknown_acceptance=float(np.mean(accept[~k])),known_selective_risk=float(np.mean(pred[k&accept]!=t[k&accept])) if (k&accept).any() else None,oscr=oscr(score,pred,t),threshold=float(cut))
+  for g,mask in (groups or {}).items():v[g+'_unknown_acceptance']=float(np.mean(accept[mask]))
+ return v
+def block(v):
+ a=np.asarray(v,float);assert a.shape==(3,7);rng=np.random.default_rng(P['bootstrap']['seed']);indices=rng.integers(0,7,size=(P['bootstrap']['draws'],7));means=a[:,indices].mean(axis=(0,2));return dict(mean=float(a.mean()),ci95=np.quantile(means,[.025,.975]).tolist(),positive=int((a>0).sum()),n_configurations=21,independent_seed_blocks=7,per_role_mean=a.mean(1).tolist())
+def predict(xs,y,q,nc):
+ """Only labeled support and unlabeled query features enter this predictor."""
+ s=np.asarray(xs,dtype=np.float64);s/=np.linalg.norm(s,axis=1,keepdims=True);centers=np.array([s[y==c].mean(0) for c in range(nc)]);centers/=np.maximum(np.linalg.norm(centers,axis=1,keepdims=True),1e-30);out={m:[] for m in P['neighbor_controls']}
+ for start in range(0,len(q),512):
+  z=np.asarray(q[start:start+512],dtype=np.float64);z/=np.linalg.norm(z,axis=1,keepdims=True);sim=z@s.T;nn=np.argsort(-sim,axis=1,kind='stable')[:,:3];lab=y[nn];one=np.eye(nc)[lab[:,0]].astype(np.float32);votes=(np.eye(nc)[lab].sum(1)/3).astype(np.float32);ncm=np.eye(nc)[(z@centers.T).argmax(1)].astype(np.float32);out['1nn'].append(one);out['3nn'].append(votes);out['ncm'].append(ncm)
+ return {m:np.concatenate(v) for m,v in out.items()}
+def main():
+ started=time.time();orig=original_lock();own=read(R/'artifacts/run_lock.json')
+ for n,h in own['files'].items():assert sha(R/n)==h,n
+ assert read(F/'artifacts/status.json')['state']=='complete_verified_and_analyzed';d=read(F/'private_data.json');roles=d['roles'];cs=d['classes'];ci={c:j for j,c in enumerate(cs)};qt=np.array([ci[r['class']] for r in d['query']]);rows={p.stem:read(p) for p in (F/'results').glob('*.json')};assert len(rows)==476
+ gpu=subprocess.run(['nvidia-smi','--query-gpu=index,name,memory.used,utilization.gpu','--format=csv'],capture_output=True,text=True)
+ write('artifacts/environment.json',dict(python=sys.version,numpy=np.__version__,scipy=scipy.__version__,sklearn=sklearn.__version__,gpu=gpu.stdout+gpu.stderr,gpu_check_exit=gpu.returncode,compute_backend='CPU frozen-feature statistics and support classifiers; GPU not required',cpu_threads=4,encoder_updates=False))
+ overlap=[]
+ for a,b in itertools.combinations(roles,2):overlap.append(dict(role_a=a['seed'],role_b=b['seed'],shared_known_classes=len(set(a['known'])&set(b['known'])),shared_support_images_per_seed=4*len(set(a['known'])&set(b['known']))))
+ write('artifacts/support_overlap.json',overlap);gates={};conditions=P['conditions'];seeds=P['seeds'];methods=P['gate_predictors']
+ for role in roles:
+  groups={'pool_seen':np.isin(qt,role['pool_unknown']),'query_only':np.isin(qt,role['query_unknown'])}
+  for seed in seeds:
+   for cond in conditions:
+    key=f"open_r{role['seed']}_s{seed}_{cond}";write('artifacts/status.json',dict(state='shared_gate_analysis',current=key));z=np.load(F/'results'/f'{key}_lr.npz');t=z['query_truth'];score=z['score_lr_msp'];cut=rows[key+'_lr']['reliability']['lr_msp']['deployment_threshold']
+    for m in methods:
+     with np.load(F/'results'/f'{key}_{m}.npz') as zz:
+      assert np.array_equal(t,zz['query_truth']);v=metrics(zz['probability'].argmax(1),t,score,cut,groups)
+     if m in ['lr','lp']:
+      saved=rows[key+'_'+m]['reliability']['lr_msp']
+      for metric in ['known_coverage','unknown_acceptance','known_selective_risk','oscr']:assert abs(v[metric]-saved[metric])<1e-12,(key,m,metric)
+     gates[key+'_'+m]=v
+    for m in methods:assert gates[key+'_'+m]['known_coverage']==gates[key+'_lr']['known_coverage'] and gates[key+'_'+m]['unknown_acceptance']==gates[key+'_lr']['unknown_acceptance']
+    print('GATE',key,flush=True)
+ write('artifacts/shared_gate_records.json',gates);assert len(gates)==420
+ comparisons={};contamination={}
+ for cond in conditions:
+  comparisons[cond]={}
+  for control in ['lr','fixed','soft']:
+   comparisons[cond][control]={}
+   for metric in ['accuracy','macro_recall','known_selective_risk','oscr']:
+    a=[[gates[f"open_r{r['seed']}_s{s}_{cond}_lp"][metric]-gates[f"open_r{r['seed']}_s{s}_{cond}_{control}"][metric] for s in seeds] for r in roles];comparisons[cond][control][metric]=block(a)
+ for first,second in [('clean_full','add10'),('clean_full','add30'),('clean_thin','matched30')]:
+  name=first+'_minus_'+second;contamination[name]={}
+  for m in ['fixed','soft','lp']:contamination[name][m]=block([[gates[f"open_r{r['seed']}_s{s}_{first}_{m}"]['accuracy']-gates[f"open_r{r['seed']}_s{s}_{second}_{m}"]['accuracy'] for s in seeds] for r in roles])
+ write('artifacts/block_bootstrap.json',dict(comparisons=comparisons,contamination=contamination,scheme=P['bootstrap'],support_overlap=overlap))
+ ids=read(F/'cache/ids.json');fi={v:j for j,v in enumerate(ids)};f=np.load(F/'cache/features.npy',mmap_mode='r');assert sha(F/'cache/features.npy')==read(F/'artifacts/features.json')['sha256'];tx=np.asarray(f[[fi[r['id']] for r in d['train']]]);q=np.asarray(f[[fi[r['id']] for r in d['query']]]);ty=np.array([ci[r['class']] for r in d['train']]);ti={r['id']:j for j,r in enumerate(d['train'])};(R/'results').mkdir(exist_ok=True);new={}
+ def store(key,prob,t,m,score=None,cut=None,groups=None):
+  name=key+'_'+m;target=R/'results'/f'{name}.json'
+  if target.exists():new[name]=read(target);return
+  v=metrics(prob.argmax(1),t,score,cut,groups);arr=dict(probability=prob,query_truth=t)
+  if score is not None:arr['score_lr_msp']=score
+  np.savez_compressed(R/'results'/f'{name}.npz',**arr);write('results/'+name+'.json',v);new[name]=v;print('CONTROL',name,round(v['accuracy'],3),flush=True)
+ for plan in d['plans']:
+  key=f"closed_s{plan['seed']}_n{plan['shot']}";support=np.array([ti[i] for i in plan['support']]);write('artifacts/status.json',dict(state='neighbor_controls',current=key,completed=len(new),expected=357))
+  if all((R/'results'/f'{key}_{m}.json').exists() for m in P['neighbor_controls']):
+   for m in P['neighbor_controls']:new[key+'_'+m]=read(R/'results'/f'{key}_{m}.json')
+   continue
+  pred=predict(tx[support],ty[support],q,240)
+  for m,prob in pred.items():store(key,prob,qt,m)
+ for role in roles:
+  mapping={v:j for j,v in enumerate(role['known'])};t=np.array([mapping.get(v,-1) for v in qt]);groups={'pool_seen':np.isin(qt,role['pool_unknown']),'query_only':np.isin(qt,role['query_unknown'])}
+  for seed in seeds:
+   keybase=f"open_r{role['seed']}_s{seed}";plan=next(v for v in d['plans'] if v['seed']==seed and v['shot']==4);support=np.array([ti[i] for i in plan['support'] if ty[ti[i]] in mapping]);y=np.array([mapping[v] for v in ty[support]]);write('artifacts/status.json',dict(state='neighbor_controls',current=keybase,completed=len(new),expected=357))
+   if all((R/'results'/f'{keybase}_{c}_{m}.json').exists() for c in conditions for m in P['neighbor_controls']):
+    for c in conditions:
+     for m in P['neighbor_controls']:new[f'{keybase}_{c}_{m}']=read(R/'results'/f'{keybase}_{c}_{m}.json')
+    continue
+   pred=predict(tx[support],y,q,120)
+   for cond in conditions:
+    key=keybase+'_'+cond;z=np.load(F/'results'/f'{key}_lr.npz');assert np.array_equal(t,z['query_truth']);score=z['score_lr_msp'];cut=rows[key+'_lr']['reliability']['lr_msp']['deployment_threshold']
+    for m,prob in pred.items():store(key,prob,t,m,score,cut,groups)
+ assert len(new)==357
+ new_comparisons={}
+ for cond in conditions:
+  new_comparisons[cond]={}
+  for m in P['neighbor_controls']:new_comparisons[cond][m]={metric:block([[gates[f"open_r{r['seed']}_s{s}_{cond}_lp"][metric]-new[f"open_r{r['seed']}_s{s}_{cond}_{m}"][metric] for s in seeds] for r in roles]) for metric in ['accuracy','macro_recall','known_selective_risk','oscr']}
+ for path in (R/'results').glob('*.npz'):
+  v=read(path.with_suffix('.json'));z=np.load(path);t=z['query_truth'];pred=z['probability'].argmax(1);assert np.allclose(z['probability'].sum(1),1);assert abs(metrics(pred,t)['accuracy']-v['accuracy'])<1e-10
+  if 'score_lr_msp' in z:
+   check=metrics(pred,t,z['score_lr_msp'],v['threshold']);assert abs(check['oscr']-v['oscr'])<1e-12 and check['known_coverage']==v['known_coverage']
+ for role in roles:
+  for seed in seeds:
+   for m in P['neighbor_controls']:
+    ref=np.load(R/'results'/f"open_r{role['seed']}_s{seed}_clean_full_{m}.npz")['probability']
+    for cond in conditions:assert np.array_equal(ref,np.load(R/'results'/f"open_r{role['seed']}_s{seed}_{cond}_{m}.npz")['probability'])
+ diagonals=[]
+ for path in sorted((F/'cache').glob('graph_*_k10.npz')):
+  g=sparse.load_npz(path);diag=g.diagonal();diagonals.append(dict(name=path.name,nodes=g.shape[0],self_rows=int((diag!=0).sum()),max_diagonal=float(np.max(diag)),action='report frozen implementation; never rebuild original graph'))
+ write('artifacts/self_neighbor_audit.json',diagonals)
+ def average(rows):
+  names=['accuracy','macro_recall','worst_recall','bottom_decile']+(['known_coverage','unknown_acceptance','known_selective_risk','oscr','pool_seen_unknown_acceptance','query_only_unknown_acceptance'] if 'oscr' in rows[0] else [])
+  return {k:float(np.mean([v[k] for v in rows])) for k in names}
+ summary=dict(shared_gate={c:{m:average([gates[f"open_r{r['seed']}_s{s}_{c}_{m}"] for r in roles for s in seeds]) for m in methods} for c in conditions},neighbor_closed={str(b):{m:average([new[f'closed_s{s}_n{b}_{m}'] for s in seeds]) for m in P['neighbor_controls']} for b in P['shots']},neighbor_open={c:{m:average([new[f"open_r{r['seed']}_s{s}_{c}_{m}"] for r in roles for s in seeds]) for m in P['neighbor_controls']} for c in conditions},block_bootstrap=dict(comparisons=comparisons,contamination=contamination,neighbor_comparisons=new_comparisons),self_neighbor_audit=dict(graphs=len(diagonals),graphs_with_self_edges=sum(v['self_rows']>0 for v in diagonals),self_rows=sum(v['self_rows'] for v in diagonals)),seconds_this_session=time.time()-started)
+ write('artifacts/summary.json',summary);assert original_lock()==orig
+ for n,h in own['files'].items():assert sha(R/n)==h,n
+ write('artifacts/verification.json',dict(saved_gate_records=420,new_predictions=357,original_locks_unchanged=True,query_truth_alignment=True,gate_invariance=True,neighbor_pool_invariance=True,probability_and_metric_checks=True))
+ write('artifacts/status.json',dict(state='complete_verified',saved_gate_records=420,new_predictions=357,seconds=time.time()-started));print('SUPPLEMENT_COMPLETE',round(time.time()-started,1),flush=True)
+if __name__=='__main__':
+ try:main()
+ except Exception:write('artifacts/status.json',dict(state='failed_resumable',error=traceback.format_exc()));raise

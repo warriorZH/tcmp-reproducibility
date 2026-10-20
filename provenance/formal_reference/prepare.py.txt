@@ -1,0 +1,25 @@
+import os
+for k in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS']:os.environ[k]='4'
+import pathlib,json,csv,numpy as np,subprocess,torch
+from common import R,read,write,sha
+def main():
+ p=read('protocol.json');old=pathlib.Path(p['source_root']);dev=pathlib.Path(p['dev_root']);assert json.loads((dev/'artifacts/post_status.json').read_text())['state']=='complete_verified_and_analyzed';sel=json.loads((dev/'artifacts/selection.json').read_text())
+ for shot in p['shots']:
+  assert sel[str(shot)]['c']==p['C'] and sel[str(shot)]['params']['lp']==[p['graph_k'],p['alpha'][str(shot)]] and sel[str(shot)]['params']['fixed']==[p['fixed_threshold'][str(shot)],1]
+ lock=json.loads((old/'artifacts/data_lock.json').read_text())
+ for name,h in lock.items():assert sha(old/'artifacts'/name)==h,name
+ split=json.loads((old/'artifacts/splits.json').read_text());devclasses=set(split['dev_classes']);rows=list(csv.DictReader(open(old/'artifacts/manifest.csv',encoding='utf8')));classes=sorted({r['class'] for r in rows}-devclasses);assert len(classes)==240
+ eligible=[r for r in rows if r['class'] in classes and not r['exclude']];vg={r['group'] for r in eligible if r['split']=='val'};train=[r for r in eligible if r['split']=='train' and r['group'] not in vg];query=[r for r in eligible if r['split']=='val'];assert not {r['group'] for r in train}&{r['group'] for r in query}
+ counts={c:{'train':sum(r['class']==c for r in train),'query':sum(r['class']==c for r in query)} for c in classes};assert min(v['train'] for v in counts.values())>=16 and min(v['query'] for v in counts.values())>0
+ plans=[]
+ for seed in p['seeds']:
+  picks={c:np.random.default_rng(seed+j*10000).choice(sorted(r['id'] for r in train if r['class']==c),16,replace=False).tolist() for j,c in enumerate(classes)}
+  for shot in p['shots']:plans.append(dict(seed=seed,shot=shot,support=[i for c in classes for i in picks[c][:shot]]))
+ roles=[];feasible=[]
+ for seed in p['role_seeds']:
+  arr=np.random.default_rng(seed).permutation(240);role=dict(seed=seed,known=arr[:120].tolist(),pool_unknown=arr[120:200].tolist(),query_unknown=arr[200:].tolist());known=sum(counts[classes[j]]['train'] for j in role['known'])-480;unknown=sum(counts[classes[j]]['train'] for j in role['pool_unknown']);needed=int(round(known*.3/.7));assert unknown>=needed;roles.append(role);feasible.append(dict(seed=seed,known_pool=known,unknown_available=unknown,needed30=needed))
+ assert torch.cuda.is_available();gpu=p['gpu_preference'];free,total=torch.cuda.mem_get_info(gpu);assert free>6*2**30,'GPU memory insufficient for encoder';write('private_data.json',dict(classes=classes,train=train,query=query,plans=plans,roles=roles,ids=sorted(r['id'] for r in train+query),data_root='${TCMP_DATA_ROOT}'))
+ weight=pathlib.Path(p['model_root'])/'models/bio2/open_clip_model.safetensors';assert sha(weight)=='b7b2bf6fbc95799e42630e394cf95803892ab447c1a8ab629dbc82fbeaf7dfef'
+ write('artifacts/environment.json',dict(train=len(train),query=len(query),formal_classes=len(classes),minimum_train=min(v['train'] for v in counts.values()),minimum_query=min(v['query'] for v in counts.values()),cross_group_removed=sum(r['split']=='train' and r['group'] in vg for r in eligible),roles=feasible,gpu=subprocess.check_output(['nvidia-smi','--query-gpu=index,name,memory.used,memory.total,utilization.gpu','--format=csv'],text=True),gpu0_free_gib=free/2**30,disk=subprocess.check_output(['df','-h',str(R)],text=True),torch=torch.__version__,formal_metrics_accessed=False,other_formal_directories=[v.name for v in R.parent.iterdir() if 'formal' in v.name]))
+ print('PREPARED_FORMAL',len(classes),len(train),len(query),'GPU',gpu,free/2**30,flush=True)
+if __name__=='__main__':main()

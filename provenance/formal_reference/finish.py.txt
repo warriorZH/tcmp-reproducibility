@@ -1,0 +1,35 @@
+import numpy as np
+from common import R,read,write,sha
+def main():
+ lock=read('artifacts/run_lock.json')
+ for name,h in lock['files'].items():assert sha(R/name)==h,name
+ files=list((R/'results').glob('*.json'));assert len(files)==476,len(files);records=[]
+ for file in files:
+  m=read(str(file.relative_to(R)));z=np.load(file.with_suffix('.npz'));t=z['query_truth'];pred=z['probability'].argmax(1);known=t>=0;acc=float(np.mean(pred[known]==t[known])*100);assert abs(acc-m['classification']['accuracy'])<1e-9
+  assert not set(z['support'])&set(z['u']);assert np.allclose(z['probability'].sum(1),1)
+  for name,v in m.get('reliability',{}).items():
+   score=z['score_'+name];cut=float(np.quantile(z['oof_'+name],.1));assert cut==v['deployment_threshold'];accept=score>=cut
+   for metric,value in [('known_coverage',np.mean(accept[known])),('unknown_acceptance',np.mean(accept[~known]))]:assert abs(float(value)-v[metric])<1e-12
+  if 'pseudo' in m:
+   for labels,w,metric in zip(z['pseudo'],z['weight'],m['pseudo']):
+    truth=z['pool_truth'][z['u']];precision=float(np.sum(w*(labels==truth))/w.sum()) if w.sum()>0 else None;assert precision==metric['weighted_training_precision']
+  records.append(m)
+ summary={}
+ for shot in [4,16]:
+  rows=[m for m in records if m['key'].startswith('closed_') and m['shot']==shot];out={}
+  baseline={m['key']:m['classification']['accuracy'] for m in rows if m['method']=='lr'}
+  for method in ['lr','fixed','soft','lp']:
+   values=[m['classification']['accuracy'] for m in rows if m['method']==method];delta=[m['classification']['accuracy']-baseline[m['key']] for m in rows if m['method']==method];rng=np.random.default_rng(7741);boot=np.mean(rng.choice(delta,(10000,len(delta)),replace=True),axis=1);out[method]=dict(mean_accuracy=float(np.mean(values)),sd=float(np.std(values,ddof=1)),mean_delta_pp=float(np.mean(delta)),positive_seeds=int(np.sum(np.array(delta)>0)),support_resampling_ci95=np.quantile(boot,[.025,.975]).tolist())
+  summary[str(shot)]=out
+ open_summary={}
+ for condition in read('protocol.json')['open_conditions']:
+  out={}
+  for method in ['lr','fixed','soft','lp']:
+   rows=[m for m in records if m['key'].startswith('open_') and m['key'].endswith('_'+condition) and m['method']==method];v=dict(known_accuracy=float(np.mean([m['classification']['accuracy'] for m in rows])))
+   if method in ['lr','lp']:v['reliability']={name:{k:float(np.mean([m['reliability'][name][k] for m in rows])) for k in ['known_coverage','unknown_acceptance','known_selective_risk','oscr']} for name in rows[0]['reliability']}
+   if method in ['fixed','soft']:v['last_round_pseudo']={k:float(np.mean([m['pseudo'][-1][k] for m in rows])) for k in ['weighted_training_precision','unknown_weight_fraction']}
+   out[method]=v
+  open_summary[condition]=out
+ write('artifacts/summary.json',dict(closed=summary,open=open_summary,interpretation='CI measures support-resampling variation, not independent datasets; main reject score was frozen raw LR MSP'))
+ write('artifacts/status.json',dict(state='complete_verified_and_analyzed',verified_results=476,paper_writing_started=False));print('FORMAL_COMPLETE_VERIFIED',summary,flush=True)
+if __name__=='__main__':main()

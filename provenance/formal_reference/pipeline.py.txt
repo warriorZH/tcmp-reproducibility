@@ -1,0 +1,6 @@
+import subprocess,traceback
+from common import R,write
+try:
+ for script in ['features.py','experiment.py','finish.py']:subprocess.run(['python','-u',script],cwd=R,check=True)
+except Exception:
+ write('artifacts/status.json',dict(state='failed_resumable',error=traceback.format_exc()));raise

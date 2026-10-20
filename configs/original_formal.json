@@ -1,0 +1,76 @@
+{
+  "version": "formal_v1_20261011",
+  "stage": "formal_240_first_evaluation",
+  "shots": [
+    4,
+    16
+  ],
+  "seeds": [
+    4001,
+    4002,
+    4003,
+    4004,
+    4005,
+    4006,
+    4007
+  ],
+  "C": 1000,
+  "temperature_grid": [
+    0.25,
+    0.5,
+    1,
+    2,
+    4
+  ],
+  "fixed_threshold": {
+    "4": 0.9,
+    "16": 0.7
+  },
+  "soft_mass": 1,
+  "graph_k": 10,
+  "alpha": {
+    "4": 0.9,
+    "16": 0.8
+  },
+  "methods": [
+    "supervised LR",
+    "calibrated fixed-threshold self-training",
+    "calibrated soft-weight self-training",
+    "inductive label propagation"
+  ],
+  "selftrain_rounds": 3,
+  "main_reliable_framework": "untempered supervised LR MSP reject score + LP class; threshold support-only OOF10percentile",
+  "score_controls": [
+    "lr_msp__lr",
+    "lr_msp__lp",
+    "calibrated_lr_msp__lp",
+    "lp_msp__lp"
+  ],
+  "open_shot": 4,
+  "role_seeds": [
+    202610130,
+    202610131,
+    202610132
+  ],
+  "open_roles": "120known/80pool_unknown/40query_only_unknown among240 formal classes",
+  "open_conditions": [
+    "clean_full",
+    "add10",
+    "add30",
+    "matched30",
+    "clean_thin"
+  ],
+  "pool_rules": "nested unknown subset and same retained known subset for matched30/clean_thin",
+  "query": "all eligible original val images formal240; train-val groups disjoint",
+  "support_sampling": "same per-class16draw nested4; class-balanced labels; all other eligible train labels hidden",
+  "selection": "all hyperparameters transferred from development; no formal query tuning or best-per-condition model selection",
+  "primary": "4shot known accuracy/macro recall; open actual known coverage, unknown acceptance, accepted known risk, OSCR",
+  "secondary": "16shot boundary, per-role and per-seed variation, actual training pseudo precision, unknown weight mass; known90 query threshold diagnostic only",
+  "gpu_preference": 0,
+  "gpu_memory_fraction": 0.75,
+  "feature_batch": 4,
+  "cpu_threads": 4,
+  "gpu_acceleration": "frozen BioCLIP2 features on GPU0; original CPU neighbors, float64 propagation and sklearn LR retained after GPU graph probability parity failed on development",
+  "no_new_method": true,
+  "paper_writing_started": false
+}

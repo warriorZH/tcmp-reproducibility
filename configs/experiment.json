@@ -1,0 +1,114 @@
+{
+  "version": "q2_supplement_v1_20261016",
+  "indian_other_collection_excluded": "Medicinal plant dataset is not merged: overlapping folder names and uncertain taxonomic synonyms",
+  "post_formal_supplement": true,
+  "tcmp_seeds": [
+    4001,
+    4002,
+    4003,
+    4004,
+    4005,
+    4006,
+    4007
+  ],
+  "indian_seeds": [
+    5001,
+    5002,
+    5003,
+    5004,
+    5005,
+    5006,
+    5007
+  ],
+  "indian_role_seeds": [
+    202610160,
+    202610161,
+    202610162
+  ],
+  "contamination": [
+    0,
+    0.1,
+    0.2,
+    0.3,
+    0.4,
+    0.5
+  ],
+  "fixed_total_sensitivity": [
+    0.3,
+    0.5
+  ],
+  "known_cap_rule": "Kstar=min(number of eligible known unlabeled images, number of available pool-unknown images); fixed known subset across all six contamination levels; unknown additions round(Kstar*rho/(1-rho)); no replacement",
+  "classifiers": [
+    "lr",
+    "fixed",
+    "soft",
+    "lp",
+    "one_step_lp",
+    "support_knn",
+    "ncm"
+  ],
+  "gates": [
+    "none",
+    "lr_msp",
+    "lp_msp"
+  ],
+  "C": 1000,
+  "temperature_grid": [
+    0.25,
+    0.5,
+    1,
+    2,
+    4
+  ],
+  "fixed_threshold": {
+    "4": 0.9,
+    "16": 0.7
+  },
+  "alpha": {
+    "4": 0.9,
+    "16": 0.8
+  },
+  "graph_k": 10,
+  "selftrain_rounds": 3,
+  "soft_mass": 1,
+  "cpu_threads": 4,
+  "bootstrap": {
+    "seed": 202610164,
+    "draws": 20000,
+    "unit": "seven shared support-seed blocks, all fixed roles resampled together"
+  },
+  "indian_subset": {
+    "max_classes": 60,
+    "max_images_per_class": 160,
+    "minimum_groups": 40,
+    "fallback_minimum_groups": 30,
+    "fallback_if_fewer_than_classes": 24,
+    "selection_seed": 2026101601,
+    "query_fraction": 0.2,
+    "min_query_groups": 8,
+    "max_query_groups": 32,
+    "exact_pixel_and_dhash_grouping": true,
+    "dhash_hamming_threshold": 2,
+    "one_representative_per_group": true,
+    "cross_label_groups": "exclude",
+    "split_once_before_features": true
+  },
+  "primary": [
+    "known accuracy vs contamination",
+    "macro recall",
+    "paired LP-minus-fixed differences",
+    "integrated known-accuracy loss over contamination"
+  ],
+  "secondary": [
+    "accepted-known risk and coverage",
+    "unknown acceptance",
+    "overall accepted error under empirical query mixture",
+    "OSCR",
+    "macro accepted-known risk",
+    "worst class recall",
+    "pool-seen vs query-only unknown",
+    "pseudo-label precision and unknown weight mass",
+    "descriptive risk-coverage curves"
+  ],
+  "interpretation": "Application and mechanism evidence only; no claim of a novel graph algorithm, guaranteed unknown detection, independent plant/specimen split, absence of pretraining overlap, or guaranteed Q2 acceptance. Cross-dataset verification uses unchanged TCMP hyperparameters; no Indian query tuning."
+}

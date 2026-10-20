@@ -1,0 +1,1138 @@
+{
+  "key": "r202610131_s4001_fixed_known_p50",
+  "split": "open",
+  "regime": "fixed_known",
+  "rho": 0.5,
+  "role": 202610131,
+  "seed": 4001,
+  "known_cap": 9892,
+  "shot": 4,
+  "n_train": 20264,
+  "n_support": 480,
+  "n_query": 11993,
+  "n_pool": 19784,
+  "unknown_pool_count": 9892,
+  "actual_unknown_fraction": 0.5,
+  "metrics": {
+    "lr": {
+      "none": {
+        "accuracy": 90.6132237067489,
+        "macro_recall": 90.24098539631692,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 63.043968407344884,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09386776293251113,
+        "macro_accepted_known_risk": 0.0975901460368309,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5589093637955475,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 90.6132237067489,
+        "macro_recall": 90.24098539631692,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 63.043968407344884,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.05526075022872827,
+        "macro_accepted_known_risk": 0.05993762827879565,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.3286958782993109,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.8613830949862369,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 90.6132237067489,
+        "macro_recall": 90.24098539631692,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 63.043968407344884,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.03515928515928516,
+        "macro_accepted_known_risk": 0.04393666278605486,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.21495179389916233,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.8560883636133916,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "lp": {
+      "none": {
+        "accuracy": 92.90853031860226,
+        "macro_recall": 92.22915456208052,
+        "worst_class_recall": 20.0,
+        "bottom_decile": 62.85869844647105,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.07091469681397738,
+        "macro_accepted_known_risk": 0.07770845437919492,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5477361794380055,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 92.90853031860226,
+        "macro_recall": 92.22915456208052,
+        "worst_class_recall": 20.0,
+        "bottom_decile": 62.85869844647105,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.04611161939615736,
+        "macro_accepted_known_risk": 0.05294886590061698,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.32219477311142897,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.873457075119758,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 92.90853031860226,
+        "macro_recall": 92.22915456208052,
+        "worst_class_recall": 20.0,
+        "bottom_decile": 62.85869844647105,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.017676767676767676,
+        "macro_accepted_known_risk": 0.02958525017167823,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.200727042832306,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.87483603461898,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "one_step_lp": {
+      "none": {
+        "accuracy": 87.51284686536485,
+        "macro_recall": 87.50848447152191,
+        "worst_class_recall": 34.48275862068966,
+        "bottom_decile": 58.326464383312896,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.1248715313463515,
+        "macro_accepted_known_risk": 0.12491515528478096,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5740015008755107,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 87.51284686536485,
+        "macro_recall": 87.50848447152191,
+        "worst_class_recall": 34.48275862068966,
+        "bottom_decile": 58.326464383312896,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.08838060384263495,
+        "macro_accepted_known_risk": 0.08877412978796259,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.35222987907944353,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.8321283370193713,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 87.51284686536485,
+        "macro_recall": 87.50848447152191,
+        "worst_class_recall": 34.48275862068966,
+        "bottom_decile": 58.326464383312896,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.053613053613053616,
+        "macro_accepted_known_risk": 0.05606899048111764,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.22996680891417734,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.8314749801644121,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "support_knn": {
+      "none": {
+        "accuracy": 83.07639602603632,
+        "macro_recall": 82.8416204636152,
+        "worst_class_recall": 7.462686567164178,
+        "bottom_decile": 35.75537247402915,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.16923603973963686,
+        "macro_accepted_known_risk": 0.17158379536384805,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5955974318352372,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 83.07639602603632,
+        "macro_recall": 82.8416204636152,
+        "worst_class_recall": 7.462686567164178,
+        "bottom_decile": 35.75537247402915,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.13376029277218665,
+        "macro_accepted_known_risk": 0.13735635641529095,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.38447536081133793,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.7923589502542101,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 83.07639602603632,
+        "macro_recall": 82.8416204636152,
+        "worst_class_recall": 7.462686567164178,
+        "bottom_decile": 35.75537247402915,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.11557886557886558,
+        "macro_accepted_known_risk": 0.12720649742237658,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2803856488067014,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.7866200853869533,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "ncm": {
+      "none": {
+        "accuracy": 90.16786570743405,
+        "macro_recall": 89.80010013493623,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 62.36265793424499,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09832134292565947,
+        "macro_accepted_known_risk": 0.1019989986506378,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5610772950888018,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 90.16786570743405,
+        "macro_recall": 89.80010013493623,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 62.36265793424499,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.05782250686184812,
+        "macro_accepted_known_risk": 0.06295781699544771,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.3305161877519178,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.8587480995823047,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 90.16786570743405,
+        "macro_recall": 89.80010013493623,
+        "worst_class_recall": 36.36363636363637,
+        "bottom_decile": 62.36265793424499,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.036907536907536904,
+        "macro_accepted_known_risk": 0.046031270920839855,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.21637426900584794,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.8531718155706374,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "fixed": {
+      "none": {
+        "accuracy": 91.88078108941419,
+        "macro_recall": 91.36139114439816,
+        "worst_class_recall": 20.689655172413794,
+        "bottom_decile": 64.93614506263364,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.08119218910585817,
+        "macro_accepted_known_risk": 0.08638608855601854,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5527390978070541,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 91.88078108941419,
+        "macro_recall": 91.36139114439816,
+        "worst_class_recall": 20.689655172413794,
+        "bottom_decile": 64.93614506263364,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.05160109789569991,
+        "macro_accepted_known_risk": 0.057389712331664317,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.3260954362241581,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.867439718875938,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 91.88078108941419,
+        "macro_recall": 91.36139114439816,
+        "worst_class_recall": 20.689655172413794,
+        "bottom_decile": 64.93614506263364,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.026612276612276612,
+        "macro_accepted_known_risk": 0.03820332212035531,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2079974711553659,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.866222894957795,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    },
+    "soft": {
+      "none": {
+        "accuracy": 90.8701610140459,
+        "macro_recall": 90.37128080916034,
+        "worst_class_recall": 31.03448275862069,
+        "bottom_decile": 64.68040645261335,
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09129838985954093,
+        "macro_accepted_known_risk": 0.09628719190839659,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.5576586342032852,
+        "unknown_acceptance": 1.0,
+        "oscr": null,
+        "pool_seen_unknown_acceptance": 1.0,
+        "query_only_unknown_acceptance": 1.0
+      },
+      "lr_msp": {
+        "accuracy": 90.8701610140459,
+        "macro_recall": 90.37128080916034,
+        "worst_class_recall": 31.03448275862069,
+        "bottom_decile": 64.68040645261335,
+        "known_coverage": 0.9361082562521411,
+        "accepted_known_risk": 0.05727355901189387,
+        "macro_accepted_known_risk": 0.0627536793164912,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.3301261214406449,
+        "unknown_acceptance": 0.36165718927701057,
+        "oscr": 0.8615999993320882,
+        "pool_seen_unknown_acceptance": 0.36152529943779027,
+        "query_only_unknown_acceptance": 0.36191860465116277
+      },
+      "lp_msp": {
+        "accuracy": 90.8701610140459,
+        "macro_recall": 90.37128080916034,
+        "worst_class_recall": 31.03448275862069,
+        "bottom_decile": 64.68040645261335,
+        "known_coverage": 0.881808838643371,
+        "accepted_known_risk": 0.031662781662781664,
+        "macro_accepted_known_risk": 0.04161502884159797,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.21210684368579105,
+        "unknown_acceptance": 0.19155158407798537,
+        "oscr": 0.8587293980528702,
+        "pool_seen_unknown_acceptance": 0.11513077487166952,
+        "query_only_unknown_acceptance": 0.3430232558139535
+      }
+    }
+  },
+  "pseudo": {
+    "fixed": [
+      {
+        "selected": 10214,
+        "precision": 0.8011552770706873,
+        "weighted_precision": 0.8011552770706873,
+        "unknown_weight_fraction": 0.17750146857254748,
+        "known_selected_fraction": 0.8492721391023049
+      },
+      {
+        "selected": 14252,
+        "precision": 0.6159837215829357,
+        "weighted_precision": 0.6159837215829357,
+        "unknown_weight_fraction": 0.35868650014033115,
+        "known_selected_fraction": 0.9239789729073999
+      },
+      {
+        "selected": 16535,
+        "precision": 0.5366797701844572,
+        "weighted_precision": 0.5366797701844572,
+        "unknown_weight_fraction": 0.43658905352283034,
+        "known_selected_fraction": 0.9417711281843915
+      }
+    ],
+    "soft": [
+      {
+        "selected": 19784,
+        "precision": 0.4532955923978973,
+        "weighted_precision": 0.5480528416478725,
+        "unknown_weight_fraction": 0.4073791043947371,
+        "known_selected_fraction": 1.0
+      },
+      {
+        "selected": 19784,
+        "precision": 0.4538515972503033,
+        "weighted_precision": 0.5078873500039597,
+        "unknown_weight_fraction": 0.4478057557162672,
+        "known_selected_fraction": 1.0
+      },
+      {
+        "selected": 19784,
+        "precision": 0.45491306105944196,
+        "weighted_precision": 0.49458362689671964,
+        "unknown_weight_fraction": 0.46255169005411945,
+        "known_selected_fraction": 1.0
+      }
+    ]
+  },
+  "cuts": {
+    "lr_msp": 0.2599152871499373,
+    "lp_msp": 0.5684906114771554
+  },
+  "curves": {
+    "lr__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.00228310502283105,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.005823912298732443,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.00799314872966029,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.012726382770435633,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.02012847965738758,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.041682527598020554,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09386776293251113,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "lr__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0017123287671232876,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0025684931506849314,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.005136986301369863,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.0059957173447537475,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.006509078451524495,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.00799314872966029,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.00881057268722467,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.016488222698072805,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.04054054054054054,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09386776293251113,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "lp__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.00228310502283105,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.005823912298732443,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.00799314872966029,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.012236906510034264,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.019271948608137045,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.037685572896840505,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.07091469681397738,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "lp__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.003424657534246575,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.003426124197002141,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.0037684138403562863,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.003711104767342278,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.003915810083210965,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.007280513918629551,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.022078416444613627,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.07091469681397738,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "one_step_lp__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.00684931506849315,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.009417808219178082,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.01141552511415525,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.014561027837259101,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.01884206920178143,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.02540679417642021,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.034752814488497305,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.04903640256959315,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.07403882755995432,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.1248715313463515,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "one_step_lp__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0017123287671232876,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.023972602739726026,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.02226027397260274,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.022698072805139188,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.022267899965741692,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.024550385383956607,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.030347528144884974,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.035331905781584586,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.06090597639893414,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.1248715313463515,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "support_knn__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.003424657534246575,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.013127853881278538,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.02398286937901499,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.03597122302158273,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.04881530117042535,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.06607929515418502,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.08693790149892934,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.11781499809668823,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.16923603973963686,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "support_knn__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.02054794520547945,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.014554794520547944,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.0182648401826484,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.02226980728051392,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.030489893799246316,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.04938624036540108,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.07586882036221243,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.09271948608137046,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.12143129044537496,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.16923603973963686,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "ncm__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.00228310502283105,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.005823912298732443,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.007422209534684556,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.012236906510034264,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.01948608137044968,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.0420631899505139,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09832134292565947,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "ncm__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.003424657534246575,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.006166495375128468,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.008564087924636025,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.011502692119432207,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.020342612419700215,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.0420631899505139,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09832134292565947,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "fixed__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.00228310502283105,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.005823912298732443,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.00799314872966029,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.012726382770435633,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.019700214132762312,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.04054054054054054,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.08119218910585817,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "fixed__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.0045662100456621,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004710920770877944,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.004796163069544364,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.005138452754781616,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.006118453255017132,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.011563169164882228,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.031594975256947086,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.08119218910585817,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ],
+    "soft__lr_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.0,
+        "unknown_acceptance": 0.0009748172217709179
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.0008561643835616438,
+        "unknown_acceptance": 0.002274573517465475
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.00228310502283105,
+        "unknown_acceptance": 0.00487408610885459
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.004282655246252677,
+        "unknown_acceptance": 0.008123476848090982
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.005823912298732443,
+        "unknown_acceptance": 0.013484971567831032
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.008278618327148159,
+        "unknown_acceptance": 0.027294882209585702
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.013215859030837005,
+        "unknown_acceptance": 0.04955320877335499
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.020556745182012847,
+        "unknown_acceptance": 0.10268074735987003
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.043585839360487245,
+        "unknown_acceptance": 0.23866774979691308
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09129838985954093,
+        "unknown_acceptance": 0.9987002437043054
+      }
+    ],
+    "soft__lp_msp": [
+      {
+        "known_coverage": 0.10003425830763961,
+        "accepted_known_risk": 0.005136986301369863,
+        "unknown_acceptance": 0.002437043054427295
+      },
+      {
+        "known_coverage": 0.20006851661527922,
+        "accepted_known_risk": 0.003424657534246575,
+        "unknown_acceptance": 0.007311129163281885
+      },
+      {
+        "known_coverage": 0.3001027749229188,
+        "accepted_known_risk": 0.006278538812785388,
+        "unknown_acceptance": 0.010398050365556457
+      },
+      {
+        "known_coverage": 0.3999657416923604,
+        "accepted_known_risk": 0.0059957173447537475,
+        "unknown_acceptance": 0.01933387489845654
+      },
+      {
+        "known_coverage": 0.5,
+        "accepted_known_risk": 0.006509078451524495,
+        "unknown_acceptance": 0.032331437855402115
+      },
+      {
+        "known_coverage": 0.6000342583076396,
+        "accepted_known_risk": 0.007422209534684556,
+        "unknown_acceptance": 0.04679122664500406
+      },
+      {
+        "known_coverage": 0.6998972250770812,
+        "accepted_known_risk": 0.00783162016642193,
+        "unknown_acceptance": 0.0677497969130788
+      },
+      {
+        "known_coverage": 0.7999314833847208,
+        "accepted_known_risk": 0.014989293361884369,
+        "unknown_acceptance": 0.10722989439480098
+      },
+      {
+        "known_coverage": 0.8999657416923604,
+        "accepted_known_risk": 0.03749524172059383,
+        "unknown_acceptance": 0.22193338748984565
+      },
+      {
+        "known_coverage": 1.0,
+        "accepted_known_risk": 0.09129838985954093,
+        "unknown_acceptance": 0.9996750609260764
+      }
+    ]
+  },
+  "timing": {
+    "graph_build_seconds": 17.454943895339966,
+    "lp_seconds": 3.557539939880371,
+    "one_step_seconds": 0.15889763832092285,
+    "fixed_seconds": 43.63605570793152,
+    "soft_seconds": 64.29074001312256
+  },
+  "seconds": 145.76817536354065,
+  "learner_hidden_labels_read": false
+}

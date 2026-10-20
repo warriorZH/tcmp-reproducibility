@@ -1,0 +1,44 @@
+import os
+for name in ['OMP_NUM_THREADS','OPENBLAS_NUM_THREADS','MKL_NUM_THREADS']:os.environ[name]='4'
+import numpy as np,time
+from scipy.special import softmax
+from .common import R,read,write
+from .learner import base,selftrain,propagate
+from .learner import graph as build
+from .original_metrics import classification,pseudo_metrics,reliability
+
+def main():
+ p=read('protocol.json');d=read('private_data.json');ids=read('cache/ids.json');ix={v:j for j,v in enumerate(ids)};f=np.load(R/'cache/features.npy',mmap_mode='r');tr=d['train'];qr=d['query'];classes=d['classes'];ci={c:j for j,c in enumerate(classes)};tx=np.asarray(f[[ix[r['id']] for r in tr]]);qx=np.asarray(f[[ix[r['id']] for r in qr]]);ty=np.array([ci[r['class']] for r in tr]);qt=np.array([ci[r['class']] for r in qr]);ti={r['id']:j for j,r in enumerate(tr)};(R/'results').mkdir(exist_ok=True)
+ def run(key,x,q,l,y,truth,t,shot,graphkey,groups=None):
+  paths=[R/'results'/f'{key}_{m}.json' for m in ['lr','fixed','soft','lp']]
+  if all(v.exists() for v in paths):return
+  write('artifacts/status.json',dict(state='formal_evaluation_running',current=key,completed=len(list((R/'results').glob('*.json'))),expected=476,formal_metrics_accessed=True))
+  b=base(x,q,l,y,p['C'],key,p['temperature_grid']);g=build(x,q,p['graph_k'],graphkey);lp=propagate(g,l,y,len(np.unique(y)),p['alpha'][str(shot)]);lr=softmax(b['query_logits'],axis=1)
+  qs={'lr_msp':lr.max(1),'calibrated_lr_msp':softmax(b['query_logits']/b['temperature'],axis=1).max(1),'lp_msp':lp['query'].max(1)};oo={'lr_msp':softmax(b['oof_logits'],axis=1).max(1),'calibrated_lr_msp':softmax(b['oof_logits']/b['temperature'],axis=1).max(1)}
+  if groups is not None:
+   oo['lp_msp']=np.zeros(len(l))
+   for a,bb in b['folds']:oo['lp_msp'][bb]=propagate(g,l[a],y[a],len(np.unique(y)),p['alpha'][str(shot)])['train'][l[bb]].max(1)
+  for method in ['lr','fixed','soft','lp']:
+   target=R/'results'/f'{key}_{method}.json'
+   if target.exists():continue
+   result=selftrain(x,q,l,y,p['C'],b,method,p['fixed_threshold'][str(shot)],p['soft_mass']) if method in ['fixed','soft'] else None
+   prob=result['query'] if result is not None else lr if method=='lr' else lp['query'];u=np.setdiff1d(np.arange(len(x)),l);arr=dict(probability=prob,query_truth=t,pool_truth=truth,support=l,support_labels=y,u=u)
+   metrics=classification(prob,t,b['hard']);meta=dict(key=key,method=method,shot=shot,temperature=b['temperature'],classification=metrics)
+   if result is not None:
+    arr.update(pseudo=result['pseudo'],weight=result['weight'],thresholds=result['thresholds']);meta['pseudo']=pseudo_metrics(result,truth)
+   if groups is not None and method in ['lr','lp']:
+    meta['reliability']={}
+    for name in (['lr_msp'] if method=='lr' else ['lr_msp','calibrated_lr_msp','lp_msp']):
+     cut=float(np.quantile(oo[name],.1));arr['score_'+name]=qs[name];arr['oof_'+name]=oo[name];meta['reliability'][name]=reliability(qs[name],prob.argmax(1),t,cut,groups)
+   tmp=R/'results'/f'{key}_{method}.tmp.npz';np.savez_compressed(tmp,**arr);os.replace(tmp,R/'results'/f'{key}_{method}.npz');write(str(target.relative_to(R)),meta);print('RESULT',key,method,round(metrics['accuracy'],4),flush=True)
+ for plan in d['plans']:
+  l=np.array([ti[i] for i in plan['support']]);run(f"closed_s{plan['seed']}_n{plan['shot']}",tx,qx,l,ty[l],ty,qt,plan['shot'],'closed')
+ for role in d['roles']:
+  known=role['known'];mapping={v:j for j,v in enumerate(known)};kt=np.flatnonzero(np.isin(ty,known));ut=np.flatnonzero(np.isin(ty,role['pool_unknown']));target=np.array([mapping.get(v,-1) for v in qt]);groups={'pool_seen':np.isin(qt,role['pool_unknown']),'query_only':np.isin(qt,role['query_unknown'])}
+  for seed in p['seeds']:
+   plan=next(v for v in d['plans'] if v['seed']==seed and v['shot']==4);support=np.array([ti[i] for i in plan['support'] if ty[ti[i]] in mapping]);ku=np.setdiff1d(kt,support);rng=np.random.default_rng(role['seed']+seed*10000);unknown=rng.permutation(ut);retained=rng.permutation(ku)[:int(round(.7*len(ku)))];n10=int(round(len(ku)*.1/.9));n30=int(round(len(ku)*.3/.7));matched=int(round(len(retained)*.3/.7));pools={'clean_full':ku,'add10':np.r_[ku,unknown[:n10]],'add30':np.r_[ku,unknown[:n30]],'matched30':np.r_[retained,unknown[:matched]],'clean_thin':retained}
+   for condition,pool in pools.items():
+    index=np.sort(np.r_[support,pool]);lookup={v:j for j,v in enumerate(index)};l=np.array([lookup[v] for v in support]);truth=np.array([mapping.get(v,-1) for v in ty[index]]);key=f"open_r{role['seed']}_s{seed}_{condition}";write('cache/'+key+'_indices.json',index.tolist());run(key,tx[index],qx,l,truth[l],truth,target,4,key,groups)
+ write('artifacts/status.json',dict(state='evaluation_complete_pending_verification',completed=len(list((R/'results').glob('*.json'))),expected=476))
+
+
