@@ -1,0 +1,276 @@
+\section{Parameter and gate sensitivity}\label{sec:s-sens}
+This section supports Section~3.7 of the main text. The $k\times\alpha$ grid uses the locked contexts and the same inductive extension with the same $k$. It was computed after the main experiments for reporting only; no default was changed. Entries are mean known accuracy (\%) over 7 (closed) or 21 (open) configurations; the default is in bold.
+
+\begin{table}[!htbp]\centering\small
+\caption{TCMP: PropGate known accuracy (\%) over the $k\times\alpha$ grid.}\label{tab:s-grid-tcmp}
+\sbox{\tablebox}{\begin{tabular}{llrrrrrr}\toprule
+Condition & $k$ & $\alpha=0.5$ & $\alpha=0.7$ & $\alpha=0.8$ & $\alpha=0.9$ & $\alpha=0.95$ & $\alpha=0.99$\\\midrule
+closed, 4-shot & 5 & 89.11 & 89.75 & 90.16 & 90.62 & 90.88 & 91.02\\
+ & 10 & 90.30 & 90.71 & 90.89 & \textbf{91.15} & 91.23 & 91.04\\
+ & 15 & 90.67 & 90.87 & 91.03 & 91.10 & 91.01 & 90.74\\
+ & 20 & 90.79 & 90.92 & 90.94 & 90.89 & 90.68 & 90.35\\
+ & 30 & 90.59 & 90.57 & 90.45 & 90.14 & 89.80 & 89.29\\
+\midrule
+closed, 16-shot & 5 & 92.71 & 92.83 & 92.91 & 93.00 & 93.05 & 93.08\\
+ & 10 & 92.95 & 92.99 & \textbf{93.00} & 93.01 & 93.00 & 93.00\\
+ & 15 & 92.86 & 92.82 & 92.83 & 92.79 & 92.76 & 92.73\\
+ & 20 & 92.70 & 92.65 & 92.60 & 92.54 & 92.51 & 92.48\\
+ & 30 & 92.25 & 92.13 & 92.06 & 91.98 & 91.93 & 91.88\\
+\midrule
+open 4-shot, 0\% & 5 & 91.88 & 92.29 & 92.53 & 92.88 & 93.08 & 93.17\\
+ & 10 & 92.83 & 93.06 & 93.20 & \textbf{93.28} & 93.26 & 93.17\\
+ & 15 & 93.11 & 93.24 & 93.24 & 93.21 & 93.09 & 92.94\\
+ & 20 & 93.11 & 93.13 & 93.06 & 92.92 & 92.76 & 92.52\\
+ & 30 & 92.62 & 92.50 & 92.39 & 92.16 & 91.89 & 91.54\\
+\midrule
+open 4-shot, 50\% & 5 & 91.65 & 92.04 & 92.30 & 92.62 & 92.82 & 92.96\\
+ & 10 & 92.56 & 92.82 & 92.96 & \textbf{93.10} & 93.11 & 93.05\\
+ & 15 & 92.83 & 92.97 & 93.08 & 93.08 & 93.00 & 92.84\\
+ & 20 & 92.83 & 92.89 & 92.91 & 92.83 & 92.73 & 92.50\\
+ & 30 & 92.56 & 92.51 & 92.45 & 92.26 & 92.01 & 91.70\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{Indian: PropGate known accuracy (\%) over the $k\times\alpha$ grid.}\label{tab:s-grid-indian}
+\sbox{\tablebox}{\begin{tabular}{llrrrrrr}\toprule
+Condition & $k$ & $\alpha=0.5$ & $\alpha=0.7$ & $\alpha=0.8$ & $\alpha=0.9$ & $\alpha=0.95$ & $\alpha=0.99$\\\midrule
+closed, 4-shot & 5 & 94.48 & 94.95 & 95.19 & 95.30 & 95.36 & 95.27\\
+ & 10 & 94.17 & 94.39 & 94.35 & \textbf{94.38} & 94.36 & 94.14\\
+ & 15 & 94.06 & 94.00 & 93.85 & 93.77 & 93.72 & 93.52\\
+ & 20 & 93.80 & 93.70 & 93.58 & 93.28 & 93.12 & 92.77\\
+ & 30 & 92.81 & 92.52 & 92.25 & 91.86 & 91.69 & 91.40\\
+\midrule
+closed, 16-shot & 5 & 96.72 & 96.76 & 96.79 & 96.80 & 96.86 & 96.89\\
+ & 10 & 96.23 & 96.15 & \textbf{96.14} & 96.15 & 96.15 & 96.14\\
+ & 15 & 95.53 & 95.49 & 95.46 & 95.40 & 95.40 & 95.40\\
+ & 20 & 95.10 & 95.07 & 95.03 & 94.94 & 94.92 & 94.91\\
+ & 30 & 94.49 & 94.40 & 94.30 & 94.27 & 94.22 & 94.17\\
+\midrule
+open 4-shot, 0\% & 5 & 96.42 & 96.56 & 96.64 & 96.73 & 96.79 & 96.79\\
+ & 10 & 96.28 & 96.23 & 96.19 & \textbf{96.20} & 96.19 & 96.15\\
+ & 15 & 96.10 & 96.10 & 96.04 & 95.98 & 95.91 & 95.78\\
+ & 20 & 95.93 & 95.89 & 95.76 & 95.63 & 95.54 & 95.39\\
+ & 30 & 95.24 & 95.13 & 94.97 & 94.76 & 94.56 & 94.33\\
+\midrule
+open 4-shot, 50\% & 5 & 96.38 & 96.69 & 96.81 & 96.93 & 96.97 & 97.05\\
+ & 10 & 96.11 & 96.11 & 96.15 & \textbf{96.10} & 96.16 & 96.13\\
+ & 15 & 96.05 & 96.05 & 96.04 & 95.97 & 95.91 & 95.78\\
+ & 20 & 95.91 & 95.85 & 95.79 & 95.72 & 95.65 & 95.41\\
+ & 30 & 95.40 & 95.32 & 95.20 & 95.04 & 94.82 & 94.52\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{Gate operating points with the PropGate class predictor (four-shot, 21 configurations; all values \%). Quantile thresholds use only reference-set scores (supervised: out-of-fold MSP; graph: held-out-support propagation). Target-UA thresholds are set from unknown query scores and show what a labeled validation set containing unknown species would allow; overall error is not reported for them.}\label{tab:s-gates}
+\sbox{\tablebox}{\begin{tabular}{llllrrrr}\toprule
+Data & Pool & Gate & Threshold & Coverage & Unknown acc. & Known risk & Overall error\\\midrule
+TCMP & 0\% & LR MSP & quantile 5\% & 96.5 & 54.2 & 5.3 & 40.0\\
+TCMP & 0\% & LR MSP & quantile 10\% (default) & 93.0 & 33.3 & 4.3 & 30.1\\
+TCMP & 0\% & LR MSP & quantile 20\% & 85.7 & 15.2 & 2.8 & 17.9\\
+TCMP & 0\% & LR MSP & target UA 10\% & 80.7 & 10.0 & 2.1 & --\\
+TCMP & 0\% & LR MSP & target UA 5\% & 70.3 & 5.0 & 1.3 & --\\
+TCMP & 0\% & graph MSP & quantile 5\% & 95.1 & 69.2 & 4.0 & 45.1\\
+TCMP & 0\% & graph MSP & quantile 10\% (default) & 90.8 & 52.6 & 2.6 & 38.9\\
+TCMP & 0\% & graph MSP & quantile 20\% & 83.0 & 34.4 & 1.3 & 30.8\\
+TCMP & 0\% & graph MSP & target UA 10\% & 46.9 & 10.0 & 0.4 & --\\
+TCMP & 0\% & graph MSP & target UA 5\% & 23.6 & 5.0 & 0.3 & --\\
+\midrule
+TCMP & 50\% & LR MSP & quantile 5\% & 96.5 & 54.2 & 5.5 & 40.1\\
+TCMP & 50\% & LR MSP & quantile 10\% (default) & 93.0 & 33.3 & 4.4 & 30.1\\
+TCMP & 50\% & LR MSP & quantile 20\% & 85.7 & 15.2 & 2.9 & 17.9\\
+TCMP & 50\% & LR MSP & target UA 10\% & 80.7 & 10.0 & 2.2 & --\\
+TCMP & 50\% & LR MSP & target UA 5\% & 70.3 & 5.0 & 1.3 & --\\
+TCMP & 50\% & graph MSP & quantile 5\% & 94.0 & 35.2 & 3.7 & 30.5\\
+TCMP & 50\% & graph MSP & quantile 10\% (default) & 89.5 & 22.2 & 2.3 & 22.1\\
+TCMP & 50\% & graph MSP & quantile 20\% & 81.0 & 12.5 & 1.1 & 14.6\\
+TCMP & 50\% & graph MSP & target UA 10\% & 76.9 & 10.0 & 0.8 & --\\
+TCMP & 50\% & graph MSP & target UA 5\% & 62.5 & 5.0 & 0.4 & --\\
+\midrule
+Indian & 0\% & LR MSP & quantile 5\% & 96.0 & 52.1 & 2.6 & 36.6\\
+Indian & 0\% & LR MSP & quantile 10\% (default) & 92.4 & 33.0 & 1.9 & 27.6\\
+Indian & 0\% & LR MSP & quantile 20\% & 84.8 & 14.6 & 1.1 & 15.4\\
+Indian & 0\% & LR MSP & target UA 10\% & 81.9 & 10.1 & 0.8 & --\\
+Indian & 0\% & LR MSP & target UA 5\% & 74.3 & 5.0 & 0.6 & --\\
+Indian & 0\% & graph MSP & quantile 5\% & 95.9 & 61.3 & 1.9 & 40.2\\
+Indian & 0\% & graph MSP & quantile 10\% (default) & 91.7 & 44.8 & 1.1 & 33.5\\
+Indian & 0\% & graph MSP & quantile 20\% & 82.3 & 26.9 & 0.6 & 25.3\\
+Indian & 0\% & graph MSP & target UA 10\% & 60.2 & 10.1 & 0.4 & --\\
+Indian & 0\% & graph MSP & target UA 5\% & 42.3 & 5.0 & 0.4 & --\\
+\midrule
+Indian & 50\% & LR MSP & quantile 5\% & 96.0 & 52.1 & 2.7 & 36.7\\
+Indian & 50\% & LR MSP & quantile 10\% (default) & 92.4 & 33.0 & 2.0 & 27.6\\
+Indian & 50\% & LR MSP & quantile 20\% & 84.8 & 14.6 & 1.1 & 15.5\\
+Indian & 50\% & LR MSP & target UA 10\% & 81.9 & 10.1 & 0.9 & --\\
+Indian & 50\% & LR MSP & target UA 5\% & 74.3 & 5.0 & 0.6 & --\\
+Indian & 50\% & graph MSP & quantile 5\% & 95.2 & 36.2 & 1.7 & 28.5\\
+Indian & 50\% & graph MSP & quantile 10\% (default) & 89.7 & 20.6 & 0.8 & 19.2\\
+Indian & 50\% & graph MSP & quantile 20\% & 79.6 & 9.6 & 0.4 & 11.2\\
+Indian & 50\% & graph MSP & target UA 10\% & 81.1 & 10.1 & 0.5 & --\\
+Indian & 50\% & graph MSP & target UA 5\% & 69.9 & 5.0 & 0.4 & --\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\FloatBarrier
+\section{Out-of-distribution-filtered self-training: complete results}\label{sec:s-ood}
+This section supports Section~3.3 of the main text. Filters are applied to the unlabeled pool before every refit; the supervised-MSP filter is recomputed with the current head, the graph-MSP and support-distance filters are computed once. All thresholds are 10th percentiles of held-out support scores. The oracle filter uses concealed labels. Kept known/unknown: share of known/unknown pool images passing the filter; Precision: weighted pseudo-label precision in the final round; Unk.\ weight: share of final-round fitting weight on unknown images; Risk: accepted-known error under the shared supervised gate (all \%).
+
+\begin{table}[!htbp]\centering\small
+\caption{TCMP: out-of-distribution-filtered and threshold-varied self-training (four-shot fixed-known, 21 configurations at each level). The default LR, LP, fixed and soft rows reproduce the released results exactly.}\label{tab:s-ood-tcmp}
+\sbox{\tablebox}{\begin{tabular}{lrrrlrrrrr}\toprule
+Method & Acc.\ 0\% & Acc.\ 50\% & Loss & LP$-$method at 50\% & Kept known & Kept unknown & Precision & Unk.\ weight & Risk\\\midrule
+LR & 90.79 & 90.79 & 0.000 & 2.306 [2.018, 2.650] & -- & -- & -- & -- & 5.4\\
+Iterative LP & 93.28 & 93.10 & 0.177 & -- & -- & -- & -- & -- & 4.4\\
+Fixed (0.9) & 93.40 & 92.09 & 1.306 & 1.009 [0.787, 1.263] & 100.0 & 100.0 & 53.7 & 43.9 & 4.9\\
+Fixed + supervised MSP & 93.39 & 92.10 & 1.290 & 1.000 [0.769, 1.261] & 98.5 & 91.4 & 53.7 & 43.8 & 4.9\\
+Fixed + graph MSP & 93.42 & 93.07 & 0.351 & 0.024 [$-$0.194, 0.280] & 90.9 & 20.0 & 82.1 & 16.0 & 4.4\\
+Fixed + support distance & 93.28 & 92.43 & 0.852 & 0.668 [0.460, 0.919] & 92.1 & 59.1 & 64.0 & 33.8 & 4.7\\
+Fixed + oracle & 93.40 & 93.40 & 0.000 & $-$0.297 [$-$0.531, $-$0.036] & 100.0 & 0.0 & 96.1 & 0.0 & 4.2\\
+Soft & 93.04 & 91.29 & 1.755 & 1.808 [1.455, 2.143] & 100.0 & 100.0 & 49.4 & 46.5 & 5.2\\
+Soft + supervised MSP & 93.28 & 91.89 & 1.392 & 1.205 [0.887, 1.526] & 98.9 & 95.3 & 51.1 & 45.8 & 4.9\\
+Soft + graph MSP & 93.33 & 92.83 & 0.495 & 0.265 [0.033, 0.525] & 90.9 & 20.0 & 80.9 & 16.6 & 4.5\\
+Soft + support distance & 93.18 & 91.92 & 1.260 & 1.179 [0.944, 1.451] & 92.1 & 59.1 & 60.7 & 36.0 & 4.9\\
+Soft + oracle & 93.04 & 93.04 & 0.004 & 0.057 [$-$0.227, 0.361] & 100.0 & 0.0 & 94.4 & 0.0 & 4.4\\
+Fixed (0.7) & 92.98 & 91.53 & 1.453 & 1.571 [1.278, 1.870] & 100.0 & 100.0 & 48.3 & 48.2 & 5.2\\
+Fixed (0.95) & 93.42 & 92.34 & 1.086 & 0.762 [0.589, 0.958] & 100.0 & 100.0 & 58.2 & 39.8 & 4.7\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{Indian: out-of-distribution-filtered and threshold-varied self-training (four-shot fixed-known, 21 configurations at each level). The default LR, LP, fixed and soft rows reproduce the released results exactly.}\label{tab:s-ood-indian}
+\sbox{\tablebox}{\begin{tabular}{lrrrlrrrrr}\toprule
+Method & Acc.\ 0\% & Acc.\ 50\% & Loss & LP$-$method at 50\% & Kept known & Kept unknown & Precision & Unk.\ weight & Risk\\\midrule
+LR & 94.26 & 94.26 & 0.000 & 1.838 [1.221, 2.457] & -- & -- & -- & -- & 2.5\\
+Iterative LP & 96.20 & 96.10 & 0.106 & -- & -- & -- & -- & -- & 2.0\\
+Fixed (0.9) & 96.81 & 95.32 & 1.484 & 0.776 [0.362, 1.129] & 100.0 & 100.0 & 53.8 & 44.8 & 2.2\\
+Fixed + supervised MSP & 96.82 & 95.39 & 1.428 & 0.710 [0.230, 1.130] & 98.0 & 90.0 & 53.9 & 44.7 & 2.2\\
+Fixed + graph MSP & 96.79 & 96.46 & 0.326 & $-$0.364 [$-$0.746, 0.048] & 90.4 & 20.7 & 82.0 & 17.1 & 1.6\\
+Fixed + support distance & 96.59 & 95.81 & 0.780 & 0.287 [$-$0.155, 0.689] & 91.6 & 27.6 & 79.5 & 19.2 & 1.9\\
+Fixed + oracle & 96.81 & 96.81 & 0.000 & $-$0.709 [$-$1.034, $-$0.334] & 100.0 & 0.0 & 98.0 & 0.0 & 1.4\\
+Soft & 96.40 & 94.67 & 1.731 & 1.430 [0.889, 1.996] & 100.0 & 100.0 & 50.3 & 47.0 & 2.5\\
+Soft + supervised MSP & 96.68 & 95.36 & 1.314 & 0.733 [0.332, 1.103] & 98.2 & 90.8 & 53.4 & 45.0 & 2.2\\
+Soft + graph MSP & 96.75 & 96.14 & 0.606 & $-$0.044 [$-$0.421, 0.352] & 90.4 & 20.7 & 81.7 & 17.0 & 1.8\\
+Soft + support distance & 96.43 & 95.74 & 0.685 & 0.357 [$-$0.163, 0.848] & 91.6 & 27.6 & 77.6 & 20.4 & 1.9\\
+Soft + oracle & 96.40 & 96.40 & 0.000 & $-$0.301 [$-$0.725, 0.147] & 100.0 & 0.0 & 96.8 & 0.0 & 1.6\\
+Fixed (0.7) & 96.29 & 94.80 & 1.496 & 1.302 [0.942, 1.631] & 100.0 & 100.0 & 49.1 & 48.6 & 2.3\\
+Fixed (0.95) & 96.80 & 95.52 & 1.282 & 0.579 [0.198, 0.946] & 100.0 & 100.0 & 57.9 & 41.1 & 2.1\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\FloatBarrier
+\section{Zero-shot and fine-tuning details}\label{sec:s-alt}
+This section supports Section~3.4 of the main text. Zero-shot class embeddings average the L2-normalized text embeddings of the listed templates and are scaled by the checkpoint logit scale. TCMP binomials remove the class index and authority from the folder name (e.g., \texttt{001.Veronica persica Poir.} $\rightarrow$ ``a photo of Veronica persica.''); Indian prompts replace underscores in folder names. Open-setting entries average 21 role/support configurations; the gate threshold is the 10th percentile of zero-shot MSP on support images.
+
+\begin{table}[!htbp]\centering\small
+\caption{BioCLIP 2 zero-shot classification (\%). The four-template ensemble adds ``\{name\}, a medicinal plant'' and the bare name.}\label{tab:s-zeroshot}
+\sbox{\tablebox}{\begin{tabular}{llrrrrrrr}\toprule
+Data & Prompt & Closed acc. & Closed macro & Open known acc. & Coverage & Unknown acc. & Known risk & OSCR\\\midrule
+TCMP & ``a photo of \{binomial\}.'' & 87.25 & 85.61 & 89.82 & 90.1 & 36.5 & 4.4 & 0.847\\
+TCMP & ``a photo of \{binomial + authority\}.'' & 84.88 & 83.06 & 88.27 & 90.1 & 41.8 & 6.0 & 0.822\\
+TCMP & four-template average & 86.93 & 85.21 & 89.57 & 90.2 & 37.4 & 4.6 & 0.840\\
+Indian & ``a photo of \{name\}.'' & 31.98 & 29.12 & 35.66 & 89.3 & 85.1 & 61.3 & 0.302\\
+Indian & ``a photo of a \{name\} leaf.'' & 25.10 & 22.00 & 28.39 & 87.6 & 84.8 & 69.2 & 0.224\\
+Indian & four-template average & 31.78 & 28.00 & 36.19 & 87.8 & 81.6 & 60.4 & 0.306\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{End-to-end fine-tuning on clean closed four-shot supports (one Tesla P40, float32). Recipe fixed in advance (main text, Section~2.4); final epoch evaluated on all queries.}\label{tab:s-finetune}
+\sbox{\tablebox}{\begin{tabular}{llrrrrrrrr}\toprule
+Backbone & Data & Draw & Acc. & Macro & Worst class & Train (min) & Query embed (min) & Peak GPU (GB) & Params (M)\\\midrule
+BioCLIP 2 ViT-L/14 & Indian & 5001 & 92.11 & 92.05 & 42.86 & 16.2 & 0.8 & 6.1 & 304.0\\
+BioCLIP 2 ViT-L/14 & Indian & 5002 & 94.64 & 94.85 & 64.71 & 16.1 & 0.8 & 6.1 & 304.0\\
+BioCLIP 2 ViT-L/14 & Indian & 5003 & 94.84 & 94.74 & 41.67 & 16.3 & 0.8 & 6.1 & 304.0\\
+BioCLIP 2 ViT-L/14 & TCMP & 4001 & 87.84 & 86.87 & 15.38 & 61.8 & 9.8 & 6.1 & 304.2\\
+BioCLIP 2 ViT-L/14 & TCMP & 4002 & 87.32 & 86.29 & 40.00 & 61.9 & 9.8 & 6.2 & 304.2\\
+BioCLIP 2 ViT-L/14 & TCMP & 4003 & 87.68 & 86.29 & 13.79 & 62.0 & 9.8 & 6.2 & 304.2\\
+ImageNet ResNet-50 & Indian & 5001 & 63.66 & 64.84 & 5.26 & 3.0 & 0.4 & 1.8 & 23.6\\
+ImageNet ResNet-50 & Indian & 5002 & 65.08 & 66.52 & 25.00 & 2.9 & 0.3 & 1.8 & 23.6\\
+ImageNet ResNet-50 & Indian & 5003 & 66.60 & 68.49 & 16.67 & 3.0 & 0.4 & 1.8 & 23.6\\
+ImageNet ResNet-50 & TCMP & 4001 & 31.05 & 29.29 & 0.00 & 8.2 & 0.9 & 1.8 & 24.0\\
+ImageNet ResNet-50 & TCMP & 4002 & 30.53 & 28.81 & 0.00 & 8.2 & 0.9 & 1.9 & 24.0\\
+ImageNet ResNet-50 & TCMP & 4003 & 31.33 & 29.35 & 0.00 & 8.2 & 0.9 & 1.9 & 24.0\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\FloatBarrier
+\section{Other frozen encoders: complete results}\label{sec:s-enc}
+This section supports Section~3.5 of the main text. DINOv2 uses the 1024-dimensional class token after the final layer norm (Hugging Face \texttt{facebook/dinov2-large}); CLIP uses the OpenAI ViT-L/14 image embedding (768 dimensions, \texttt{open\_clip} model \texttt{ViT-L-14-quickgelu}, i.e.\ with the QuickGELU activation the OpenAI weights were trained with). Images use the same EXIF, resize, crop and float32 settings with each encoder's normalization; features are L2-normalized. All PropGate and control settings are unchanged. Entries are known accuracy (\%); the BioCLIP 2 Indian rows were recomputed with the same code and match the released results exactly.
+
+\begin{table}[!htbp]\centering\small
+\caption{All seven predictors with three frozen encoders (four-shot; closed: 7 draws, open: 21 configurations). BioCLIP 2 TCMP values are those of the main text and Tables S1--S6.}\label{tab:s-enc}
+\sbox{\tablebox}{\begin{tabular}{lllrrrrrrr}\toprule
+Encoder & Data & Pool & LR & Fixed & Soft & Iter.\ LP & One-step LP & Support 10NN & NCM\\\midrule
+BioCLIP 2 & Indian & closed & 91.37 & 94.68 & 93.80 & 94.38 & 90.63 & 86.09 & 90.47\\
+BioCLIP 2 & Indian & open 0\% & 94.26 & 96.81 & 96.40 & 96.20 & 94.66 & 90.37 & 93.80\\
+BioCLIP 2 & Indian & open 50\% & 94.26 & 95.32 & 94.67 & 96.10 & 94.47 & 90.37 & 93.80\\
+\midrule
+DINOv2 ViT-L/14 & TCMP & closed & 81.76 & 83.26 & 83.71 & 85.53 & 76.08 & 77.85 & 79.36\\
+DINOv2 ViT-L/14 & TCMP & open 0\% & 85.70 & 87.72 & 87.27 & 88.69 & 82.72 & 83.30 & 84.13\\
+DINOv2 ViT-L/14 & TCMP & open 50\% & 85.70 & 86.70 & 85.88 & 88.29 & 82.01 & 83.30 & 84.13\\
+\midrule
+DINOv2 ViT-L/14 & Indian & closed & 90.08 & 94.14 & 92.90 & 93.96 & 89.86 & 84.36 & 88.23\\
+DINOv2 ViT-L/14 & Indian & open 0\% & 93.04 & 96.14 & 95.39 & 95.91 & 93.46 & 88.39 & 92.17\\
+DINOv2 ViT-L/14 & Indian & open 50\% & 93.04 & 94.74 & 93.85 & 95.83 & 92.95 & 88.39 & 92.17\\
+\midrule
+CLIP ViT-L/14 & TCMP & closed & 57.40 & 58.03 & 60.89 & 59.85 & 53.66 & 44.00 & 52.35\\
+CLIP ViT-L/14 & TCMP & open 0\% & 64.34 & 65.01 & 67.73 & 65.88 & 62.55 & 51.89 & 60.23\\
+CLIP ViT-L/14 & TCMP & open 50\% & 64.34 & 64.25 & 65.03 & 64.87 & 60.60 & 51.89 & 60.23\\
+\midrule
+CLIP ViT-L/14 & Indian & closed & 69.87 & 73.71 & 74.06 & 69.40 & 65.27 & 49.86 & 61.32\\
+CLIP ViT-L/14 & Indian & open 0\% & 75.86 & 80.96 & 79.85 & 74.37 & 72.65 & 56.18 & 68.90\\
+CLIP ViT-L/14 & Indian & open 50\% & 75.86 & 77.70 & 76.17 & 74.35 & 72.11 & 56.18 & 68.90\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{Other encoders at 50\% contamination: PropGate class predictor with both gates (\%).}\label{tab:s-enc-gates}
+\sbox{\tablebox}{\begin{tabular}{lllrrrr}\toprule
+Encoder & Data & Gate & Coverage & Unknown acc. & Known risk & OSCR\\\midrule
+DINOv2 & TCMP & LR MSP & 92.6 & 45.3 & 8.7 & 0.797\\
+DINOv2 & TCMP & graph MSP & 89.0 & 41.0 & 5.9 & 0.786\\
+DINOv2 & Indian & LR MSP & 91.7 & 38.1 & 2.2 & 0.885\\
+DINOv2 & Indian & graph MSP & 87.2 & 25.3 & 1.5 & 0.870\\
+CLIP & TCMP & LR MSP & 94.2 & 83.6 & 32.8 & 0.539\\
+CLIP & TCMP & graph MSP & 88.3 & 70.9 & 28.9 & 0.550\\
+CLIP & Indian & LR MSP & 92.6 & 73.6 & 22.8 & 0.636\\
+CLIP & Indian & graph MSP & 86.1 & 50.3 & 19.6 & 0.651\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\begin{table}[!htbp]\centering\small
+\caption{Other encoders: paired differences in known accuracy (points) with 95\% seed-block intervals (21 configurations).}\label{tab:s-enc-paired}
+\sbox{\tablebox}{\begin{tabular}{llllll}\toprule
+Encoder & Data & LP$-$fixed at 50\% & LP$-$soft at 50\% & LP$-$LR at 50\% & Fixed loss $-$ LP loss\\\midrule
+DINOv2 & TCMP & 1.594 [1.185, 1.994] & 2.406 [1.961, 2.876] & 2.590 [2.132, 3.016] & 0.630 [0.487, 0.794]\\
+DINOv2 & Indian & 1.096 [0.806, 1.360] & 1.986 [1.805, 2.163] & 2.794 [2.369, 3.156] & 1.321 [1.103, 1.570]\\
+CLIP & TCMP & 0.619 [0.183, 0.986] & $-$0.160 [$-$0.495, 0.180] & 0.534 [0.247, 0.846] & $-$0.255 [$-$0.578, 0.255]\\
+CLIP & Indian & $-$3.346 [$-$4.276, $-$2.213] & $-$1.815 [$-$2.708, $-$0.936] & $-$1.507 [$-$2.799, $-$0.187] & 3.242 [2.547, 3.887]\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}
+
+\FloatBarrier
+\section{Development-class sensitivity grid}\label{sec:s-dev}
+This post hoc check repeats the $k\times\alpha$ grid and the fixed self-training threshold grid ($0.5$, $0.7$, $0.8$, $0.9$, $0.95$) on the 60 TCMP development classes, which are disjoint from the 240 evaluation classes, using a smaller version of the evaluation protocol. The original development runs that fixed the defaults are not replayed. Development images were enumerated from the training and validation folders of the TCMP-300 release; 10,415 readable images were used and one truncated file was excluded. Development images were not audited for near duplicates. Support draws use seeds 7001--7007 and role assignments seeds 70001--70003.
+
+\begin{table}[!htbp]\centering\small
+\caption{Repeating the grid on the 60 TCMP development classes (30 known / 20 pool-unknown / 10 query-only per role, 3 roles, 7 support draws). Known accuracy (\%). The selection criterion averaged the three four-shot conditions: best LP $k=5$, $\alpha=0.99$, best fixed threshold 0.95.}\label{tab:s-dev}
+\sbox{\tablebox}{\begin{tabular}{lrrrrlrrl}\toprule
+Condition & $n$ & LR & LP ($k$10, $\alpha$0.9) & LP ($k$10, $\alpha$0.8) & Best LP & Fixed 0.9 & Fixed 0.7 & Best fixed threshold\\\midrule
+closed, 4-shot & 7 & 93.36 & 95.54 & 95.37 & $k=10$, $\alpha=0.95$ 95.54 & 94.87 & 94.72 & 0.95 94.95\\
+closed, 16-shot & 7 & 96.51 & 96.96 & 96.98 & $k=5$, $\alpha=0.95$ 97.09 & 97.16 & 97.13 & 0.9 97.16\\
+open 4-shot, 0\% & 21 & 95.54 & 96.65 & 96.45 & $k=5$, $\alpha=0.99$ 96.95 & 96.94 & 96.68 & 0.9 96.94\\
+open 4-shot, 50\% & 21 & 95.54 & 96.70 & 96.60 & $k=5$, $\alpha=0.99$ 96.81 & 96.02 & 95.65 & 0.95 96.09\\
+\bottomrule\end{tabular}}
+\ifdim\wd\tablebox>\linewidth\resizebox{\linewidth}{!}{\usebox{\tablebox}}\else\usebox{\tablebox}\fi
+\end{table}

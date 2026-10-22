@@ -1,95 +1,121 @@
-# Low-label medicinal plant recognition under unknown-class contamination
+# PropGate — reproduction materials
 
-[中文说明](README_zh.md) · [Protocol](docs/PROTOCOL.md) · [Data](data/README.md) · [Validation](docs/VALIDATION.md)
+[中文说明](README_zh.md) · [Paper-to-file map](docs/PAPER_MAPPING.md) · [Protocol](docs/PROTOCOL.md) · [Data](data/README.md) · [Validation](docs/VALIDATION.md) · [Environment](environment/README.md)
 
-Reproduction materials for **Low-Label Medicinal Plant Recognition with Frozen Biological Representations: Unknown-Class Contamination Tolerance and Acceptance Tradeoffs**.
+Code, locked data splits, saved results and verification scripts for
 
-The study compares supervised logistic regression (LR), fixed/soft self-training, and iterative label propagation (LP) on frozen BioCLIP 2 features. It evaluates known-class recognition separately from support-calibrated acceptance, using existing species/folder labels without new organ, box, or mask annotations.
+> Hu J, Zhang P, Li X, Wang Z. **PropGate: graph label propagation with a reference-calibrated acceptance gate for low-label medicinal plant recognition when unlabeled archives contain unknown species.** Manuscript submitted to *Plant Methods* (Methodology), 2026.
 
-![Study overview](docs/figures/study_overview.png)
+PropGate identifies medicinal plant photographs from a few labeled reference images per species plus an unlabeled image archive that may contain species outside the reference list. Images are embedded once with the frozen BioCLIP 2 encoder; labels are propagated over a k-nearest-neighbor graph of references and archive (k = 10, α = 0.9 at four labels per class, 0.8 at sixteen); a logistic-regression head fitted on the references alone sets an acceptance threshold (10th percentile of out-of-fold maximum softmax probability), so each query is either assigned a known species or referred to an expert.
 
-TCMP-300 example photographs in the overview are attributed to Zhang et al., Figshare TCMP-300 (CC BY 4.0); they illustrate data roles.
+Everything needed to check the paper's numbers runs on a laptop CPU in a few minutes. Re-running the experiments from images additionally needs the two public datasets and, preferably, a GPU.
 
-![Contamination gradients](docs/figures/01_contamination_gradients.png)
+## Contents
 
-## What is included
+| Path | What it holds |
+|---|---|
+| `src/tcmp_repro/` | Core learners (LR, fixed/soft self-training, iterative and one-step LP, support kNN/NCM), gates, metrics, feature extraction and the experiment runners |
+| `revision/` | Additional experiments reported in Sections 3.3–3.7: OOD-filtered self-training, zero-shot and fine-tuning baselines, k × α sensitivity, DINOv2/CLIP encoders, development-class grid; `run_all.sh` runs them all |
+| `configs/` | Frozen settings (`experiment.json`: seeds, k, α, thresholds, bootstrap); BioCLIP 2 model config |
+| `data/` | Locked manifests of both datasets (image IDs, relative paths, SHA-256, labels, similarity groups, support draws, species roles) and the 336 archive index sets of the contamination contexts. **No images.** |
+| `results/reference/` | Saved results of the main contamination study: 350 per-configuration records (TCMP + Indian), 476 original TCMP records, review-stage controls |
+| `results/revision/` | Saved results of the additional experiments: 497 per-configuration files, 14 zero-shot/fine-tuning runs, 10 summaries, feature metadata and run logs (server paths replaced by placeholders) |
+| `scripts/` | Verification and analysis scripts (below) |
+| `docs/` | Protocol, paper-to-file map, validation record, figure sources |
+| `provenance/` | Original source snapshots and BioCLIP 2 checkpoint revision/hash |
 
-- Locked TCMP evaluation manifests: 240 classes, 29,050 training and 11,993 query images; nested four-/sixteen-shot support draws and three open-class roles.
-- Locked Indian medicinal leaf subset: 60 classes, 3,955 training and 988 query images, similarity grouping records and the same evaluation rules.
-- All 336 saved fixed-known/fixed-total pool index sets; 350 per-context dual-source results (seven classifiers × three acceptance rules), 476 original TCMP per-method results, and available review-control metadata.
-- Core learning/evaluation code, portable extraction/running commands, source provenance, analysis scripts, numerical reference outputs, citations, and file checksums.
+## Level 1 — check every reported number (CPU, no data download)
 
-Images, model weights, extracted features, fitted estimator caches and large probability arrays are downloaded or regenerated separately. Dataset download and attribution information is in [data/README.md](data/README.md).
-
-## 1. Install
-
-Run commands from this repository root. Python 3.10–3.12 is supported by the declared dependency range; Python 3.10 is appropriate for the inspected reference environment.
+Python 3.10–3.12.
 
 ```bash
 python -m venv .venv
-# Linux/macOS: source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install -e .
+# Linux/macOS: source .venv/bin/activate      Windows: .venv\Scripts\Activate.ps1
+python -m pip install -e . "numpy==1.24.3" "scipy==1.11.2"
+python scripts/run_offline_checks.py
 ```
 
-The portable package pins scikit-learn 1.7.2 and constrains NumPy/SciPy to retain the original implementation interfaces. See [environment notes](environment/README.md) for the distinction between inspected versions and a full historical lockfile.
+The eight steps (report in `outputs/offline_check_report.txt`):
 
-## 2. Reproduce analyses without a GPU or raw images
+| Step | Script | Checks |
+|---|---|---|
+| 1 | `verify_release.py` | Manifest counts, disjoint train/query images and similarity groups, nested 4/16-shot supports, recomputation of all 336 locked archive index sets, 350 + 476 result records, file checksums |
+| 2 | `smoke_test.py` | All seven classifiers × three gates on synthetic features (functional test, not a benchmark) |
+| 3 | `analyze_formal.py` | Original TCMP closed/open summaries from 476 per-run records |
+| 4 | `analyze_results.py` | Contamination gradients, component controls, acceptance and pseudo-label analyses; regenerates Figures 4–6 and the statistics behind Tables 1–2 |
+| 5 | `compare_analysis.py` | Step 4 against the released reference statistics (894 values, tolerance 1e-10) |
+| 6 | `verify_revision.py` | Every released summary of the additional experiments recomputed from its per-configuration files |
+| 7 | `check_paper_numbers.py` | 308 values printed in Sections 3.3–3.7 and Tables 3–7 of the manuscript |
+| 8 | `make_revision_tables.py --check` | Regenerates Additional file 1, Tables S16–S26 |
 
-```bash
-python scripts/verify_release.py
-python scripts/smoke_test.py
-python scripts/analyze_formal.py
-python scripts/analyze_results.py --input results/reference --output outputs/analysis
-python scripts/compare_analysis.py
-```
+Which file and command supports each table and figure is listed in [docs/PAPER_MAPPING.md](docs/PAPER_MAPPING.md).
 
-This checks split integrity and exact context indices, exercises all seven classifiers/three gates on synthetic features, and regenerates the dual-source contamination, ablation, acceptance and pseudo-label analyses. Outputs appear under `outputs/analysis`. The comparison checks all numerical entries against the released reference statistics. Original TCMP closed/full-pool values are additionally in `results/reference/formal/`.
+## Level 2 — re-run from images
 
-## 3. Re-run from images
+### Data
 
-Obtain and unpack the two datasets as documented in [data/README.md](data/README.md). First audit the exact image identities:
+Download the two public datasets (CC BY 4.0) as described in [data/README.md](data/README.md):
+
+- TCMP-300 (Figshare, DOI 10.6084/m9.figshare.29432726): root folder containing `train/` and `val/`.
+- Indian Medicinal Leaves Image Datasets, version 3 (Mendeley Data, DOI 10.17632/748f8jkphb.3): use the **Medicinal Leaf dataset** folder.
+
+Confirm that the images are byte-identical to the ones used:
 
 ```bash
 python scripts/verify_images.py --dataset tcmp --data-root /path/to/tcmp-300
 python scripts/verify_images.py --dataset indian --data-root "/path/to/Medicinal Leaf dataset"
 ```
 
-Image roots must contain the relative paths recorded in the manifests. The strict SHA-256 check identifies archive/file differences before computation; mismatched data should be reported rather than silently replacing the study split.
-
-For the reference GPU stack, install PyTorch 2.7.1 and torchvision 0.22.1 with CUDA 11.8 using the official PyTorch wheel index, then the feature dependencies:
+### Install
 
 ```bash
 python -m pip install torch==2.7.1 torchvision==0.22.1 --index-url https://download.pytorch.org/whl/cu118
-python -m pip install -e ".[features]"
-python scripts/download_checkpoint.py --output checkpoints/bioclip-2
-# Optional network route:
-# python scripts/download_checkpoint.py --output checkpoints/bioclip-2 --endpoint https://hf-mirror.com
-python -m tcmp_repro.extract --dataset tcmp --data-root /path/to/tcmp-300 --model-dir checkpoints/bioclip-2 --output outputs/features/tcmp --device cuda:0 --batch-size 4
-python -m tcmp_repro.extract --dataset indian --data-root "/path/to/Medicinal Leaf dataset" --model-dir checkpoints/bioclip-2 --output outputs/features/indian --device cuda:0 --batch-size 2
+python -m pip install -e ".[revision]" "numpy==1.24.3" "scipy==1.11.2"
+python scripts/download_checkpoint.py --output checkpoints/bioclip-2   # revision and SHA-256 checked against provenance/model.json
 ```
 
-Checkpoint revision and weight hash are checked against `provenance/model.json`. Extraction uses only the frozen visual encoder, EXIF correction, RGB conversion, bicubic short-side resize to 224, center crop, the checkpoint mean/SD, float32 inference and L2 normalization. CPU extraction is available with `--device cpu`; the original hardware was an NVIDIA Tesla P40 24 GB. CPU, GPU, numerical-library versions and batch shapes can cause small floating-point differences.
-
-Run a limited gradient context first, then the full suites:
+### Main experiments (Sections 3.1–3.2, 3.6, 3.8; Tables 1–2; Figures 4–6)
 
 ```bash
-python -m tcmp_repro.run --dataset tcmp --features outputs/features/tcmp/features.npy --ids outputs/features/tcmp/ids.json --output outputs/pilot/tcmp --suite gradients --seed 4001 --role 202610130 --rho 0.5 --max-contexts 1
-python -m tcmp_repro.run --dataset tcmp --features outputs/features/tcmp/features.npy --ids outputs/features/tcmp/ids.json --output outputs/rerun/tcmp --suite gradients
+python -m tcmp_repro.extract --dataset tcmp   --data-root /path/to/tcmp-300 --model-dir checkpoints/bioclip-2 --output outputs/features/tcmp   --device cuda:0 --batch-size 4
+python -m tcmp_repro.extract --dataset indian --data-root "/path/to/Medicinal Leaf dataset" --model-dir checkpoints/bioclip-2 --output outputs/features/indian --device cuda:0 --batch-size 2
+python -m tcmp_repro.run --dataset tcmp   --features outputs/features/tcmp/features.npy   --ids outputs/features/tcmp/ids.json   --output outputs/rerun/tcmp --suite gradients
 python -m tcmp_repro.run --dataset indian --features outputs/features/indian/features.npy --ids outputs/features/indian/ids.json --output outputs/rerun/indian --suite all
 python -m tcmp_repro.original --features outputs/features/tcmp/features.npy --ids outputs/features/tcmp/ids.json --output outputs/original_tcmp
+python scripts/analyze_results.py --input outputs/rerun --output outputs/analysis_rerun
 ```
 
-The original TCMP command runs its 14 closed and 105 open contexts, each with four methods (476 result records), using Clean-full, Add10, Add30, Matched30 and Clean-thin pools. The dual-source runner reproduces 168 TCMP open contexts and 182 Indian closed/open contexts. The two pool families have different clean baselines; see [protocol](docs/PROTOCOL.md). Use a separate output directory for a pilot so a subsequent full run has an unambiguous scope. To analyze new dual-source runs, pass `--input outputs/rerun` to the analysis script; it requires complete suites.
+Run a single configuration first (`--seed 4001 --role 202610130 --rho 0.5 --max-contexts 1`) to check the set-up. `--device cpu` works for extraction but is slow.
 
-All classification/graph fitting runs on CPU. GPU use is for feature extraction. Estimator and graph caches resume completed work; do not reuse an output directory after changing code or inputs.
+### Additional experiments (Sections 3.3–3.5, 3.7; Tables 3–7; Additional file 1, Sections S7–S11)
 
-## Interpretation and reproducibility status
+```bash
+TCMP_ROOT=/path/to/tcmp-300 INDIAN_ROOT="/path/to/Medicinal Leaf dataset" \
+TCMP_FEATURES=outputs/features/tcmp/features.npy INDIAN_FEATURES=outputs/features/indian/features.npy \
+OUT=outputs/revision bash revision/run_all.sh
+```
 
-Primary evidence concerns four-shot contamination tolerance, not universal superiority or a new graph algorithm. Clean-pool/sixteen-shot outcomes and class-tail summaries are part of the release. Thresholds are fitted from support-only predictions; query-label-derived risk–coverage curves are retrospective evaluation curves, not deployed threshold calibration. See [protocol](docs/PROTOCOL.md).
+`run_all.sh` is resumable (re-run it to continue) and accepts `STAGES="w2 w4 zeroshot w5 dev finetune"` to select stages; missing BioCLIP 2 features or checkpoint are extracted/downloaded. It checks that the features reproduce a released configuration before using them. Stages and outputs:
 
-The release has been checked through metadata/index validation, synthetic integration, core-source comparisons, and saved-result reanalysis. The new portable feature/download wrappers have not been independently exercised end-to-end from fresh dataset downloads; a fresh full GPU reproduction is not claimed. Validation details are recorded in [docs/VALIDATION.md](docs/VALIDATION.md).
+| Stage | Script | Paper | Output under `$OUT/` |
+|---|---|---|---|
+| `w2` | `exp_w2_ood_selftrain.py` | Table 3, Tables S19–S20 | `w2/<dataset>/`, `w2/<dataset>_summary.json` |
+| `zeroshot` | `exp_w3_zeroshot.py` | Table 4, Table S21 | `w3/zeroshot_<dataset>.json` |
+| `finetune` | `exp_w3_finetune.py` | Table 4, Table S22 | `w3/finetune_<backbone>_<dataset>_s<seed>.json` |
+| `w4` | `exp_w4_sensitivity.py` | Tables 6–7, Tables S16–S18 | `w4/<dataset>/`, `w4/<dataset>_summary.json` |
+| `w5` | `extract_features.py`, `exp_w5_encoders.py` | Table 5, Tables S23–S25 | `features/<encoder>_<dataset>/`, `w5/` |
+| `dev` | `extract_features.py`, `exp_dev_grid.py` | Section 3.7, Table S26 | `features/bioclip2_tcmp_dev/`, `dev/` |
+
+To compare a re-run with the paper, point the checks at it: copy `$OUT/{w2,w3,w4,w5,dev}` over `results/revision/` in a separate copy of this folder and run steps 6–8. On the reference machine (one Tesla P40, eight parallel CPU jobs) the complete additional suite took roughly a day, most of it fine-tuning and feature extraction for the other encoders.
+
+## Known limitations
+
+- **Fine-tuning is not bit-reproducible.** Random augmentation and GPU kernels change the last decimals of the fine-tuned accuracies across machines. Expect the means of Table 4 to agree within the reported standard deviations, not exactly.
+- **CLIP activation (corrected).** The first CLIP run used open_clip's `ViT-L-14` configuration (GELU), although the OpenAI weights were trained with QuickGELU. The manuscript of 22 October 2026 (version 9) reports the re-run with `ViT-L-14-quickgelu` (`--encoder clip-quickgelu`, `revision/run_clip_quickgelu.sh`), which raised CLIP accuracies by 1.5–6.5 points and changed the TCMP comparison (propagation now ahead of LR and fixed self-training at 50%). The superseded GELU results are kept in `results/revision/superseded/clip_gelu/` for transparency.
+- **Development images.** One truncated TCMP development image is excluded (`results/revision/features/bioclip2_tcmp_dev/excluded_images.json`); development images were not audited for near duplicates.
+- **Images are not redistributed.** Image identity is guaranteed by SHA-256 in the manifests; if a public archive version changes, `verify_images.py` reports which files differ.
+- **Not re-run end-to-end on a fresh machine.** All saved results were reproduced from saved records (Level 1); the image-to-result path (Level 2) was run once on the reference server.
 
 ## Citation and licenses
 
-Please cite the study using its eventual publication metadata, and cite the dataset/model papers in `references.bib`. `CITATION.cff` identifies this software release and its authors (Jingyi Hu, Peihua Zhang, Xiangmeng Li, Zibin Wang); add the publication DOI when available. Project code is MIT licensed. Original data/model licenses and attribution remain separate; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+Cite the paper (details above; DOI to be added on publication) and the datasets and BioCLIP 2 as listed in `references.bib`. `CITATION.cff` describes this software release (version 0.2.1). Code and documentation: MIT licence. Saved numerical results: CC BY 4.0 with attribution to the study. Dataset metadata and model weights keep their original licences; see [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).

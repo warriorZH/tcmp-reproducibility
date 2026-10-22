@@ -1,0 +1,89 @@
+{
+  "key": "closed_s5003_n4",
+  "dataset": "indian",
+  "encoder": "bioclip2",
+  "split": "closed",
+  "regime": "full_known",
+  "rho": 0.0,
+  "role": -1,
+  "seed": 5003,
+  "shot": 4,
+  "acc": {
+    "lr": 92.71255060728745,
+    "lp": 94.02834008097166,
+    "one_step_lp": 90.2834008097166,
+    "support_knn": 88.05668016194332,
+    "ncm": 92.20647773279353,
+    "fixed": 94.63562753036437,
+    "soft": 93.92712550607287
+  },
+  "gated": {
+    "lr": {
+      "none": {
+        "accuracy": 92.71255060728745,
+        "macro_recall": 92.66114577969182,
+        "worst_class_recall": 33.33333333333333
+      }
+    },
+    "lp": {
+      "none": {
+        "accuracy": 94.02834008097166,
+        "macro_recall": 93.61529015122306,
+        "worst_class_recall": 16.666666666666664
+      }
+    },
+    "one_step_lp": {
+      "none": {
+        "accuracy": 90.2834008097166,
+        "macro_recall": 91.32223891177149,
+        "worst_class_recall": 56.52173913043478
+      }
+    },
+    "support_knn": {
+      "none": {
+        "accuracy": 88.05668016194332,
+        "macro_recall": 88.02235869958407,
+        "worst_class_recall": 16.666666666666664
+      }
+    },
+    "ncm": {
+      "none": {
+        "accuracy": 92.20647773279353,
+        "macro_recall": 92.0861801523493,
+        "worst_class_recall": 41.66666666666667
+      }
+    },
+    "fixed": {
+      "none": {
+        "accuracy": 94.63562753036437,
+        "macro_recall": 93.95870949198498,
+        "worst_class_recall": 25.0
+      }
+    },
+    "soft": {
+      "none": {
+        "accuracy": 93.92712550607287,
+        "macro_recall": 93.37896538500699,
+        "worst_class_recall": 33.33333333333333
+      }
+    }
+  },
+  "timing": {
+    "graph_build_seconds": 1.4562952518463135,
+    "lp_seconds": 0.8727855682373047,
+    "fixed_seconds": 19.566059350967407,
+    "soft_seconds": 19.8900306224823
+  },
+  "dim": 768,
+  "n_train": 3955,
+  "reference_delta": {
+    "lr": 0.0,
+    "lp": 0.0,
+    "one_step_lp": 0.0,
+    "support_knn": 0.0,
+    "ncm": 0.0,
+    "fixed": 0.0,
+    "soft": 0.0
+  },
+  "seconds": 43.55521249771118
+}

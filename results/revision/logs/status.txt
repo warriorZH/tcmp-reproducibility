@@ -1,0 +1,55 @@
+start Tue Oct 20 14:16:26 UTC 2026  PY=python JOBS=8 DEVICE=cuda:0 HF_ENDPOINT=https://hf-mirror.com
+TCMP_ROOT=<TCMP_ROOT>  IND_ROOT=<INDIAN_ROOT>  CKPT=<BIOCLIP2_CHECKPOINT_DIR>/open_clip_model.safetensors
+features: tcmp=<TCMP_BIOCLIP2_FEATURES>/features.npy indian=<INDIAN_BIOCLIP2_FEATURES>/features.npy
+FAILED zeroshot_indian (see revision_outputs/logs/zeroshot_indian.log)
+FAILED zeroshot_tcmp (see revision_outputs/logs/zeroshot_tcmp.log)
+start Tue Oct 20 14:20:06 UTC 2026  PY=python JOBS=8 DEVICE=cuda:0 HF_ENDPOINT=https://hf-mirror.com
+TCMP_ROOT=<TCMP_ROOT>  IND_ROOT=<INDIAN_ROOT>  CKPT=<BIOCLIP2_CHECKPOINT_DIR>/open_clip_model.safetensors
+features: tcmp=<TCMP_BIOCLIP2_FEATURES>/features.npy indian=<INDIAN_BIOCLIP2_FEATURES>/features.npy
+OK zeroshot_indian
+OK w2_indian
+OK zeroshot_tcmp
+finished Tue Oct 20 14:23:02 UTC 2026
+OK w4_indian
+OK extract_dinov2_indian
+OK extract_dinov2_tcmp
+FAILED extract_clip_indian (see revision_outputs/logs/extract_clip_indian.log)
+start Tue Oct 20 15:14:38 UTC 2026  PY=python JOBS=8 DEVICE=cuda:0 HF_ENDPOINT=https://hf-mirror.com
+TCMP_ROOT=<TCMP_ROOT>  IND_ROOT=<INDIAN_ROOT>  CKPT=<BIOCLIP2_CHECKPOINT_DIR>/open_clip_model.safetensors
+features: tcmp=<TCMP_BIOCLIP2_FEATURES>/features.npy indian=<INDIAN_BIOCLIP2_FEATURES>/features.npy
+OK extract_clip_indian
+OK w2_tcmp
+OK extract_clip_tcmp
+OK w5_dinov2_indian
+OK extract_clip_tcmp
+OK w4_tcmp
+OK w5_dinov2_tcmp
+OK w5_dinov2_tcmp
+OK w5_clip_indian
+OK w5_clip_indian
+OK w5_clip_tcmp
+OK w5_clip_tcmp
+OK w5_bioclip2_indian
+OK w5_bioclip2_indian
+FAILED extract_bioclip2_tcmp_dev (see revision_outputs/logs/extract_bioclip2_tcmp_dev.log)
+FAILED extract_bioclip2_tcmp_dev (see revision_outputs/logs/extract_bioclip2_tcmp_dev.log)
+FAILED finetune_bioclip2_vitl14_indian (see revision_outputs/logs/finetune_bioclip2_vitl14_indian.log)
+FAILED finetune_bioclip2_vitl14_tcmp (see revision_outputs/logs/finetune_bioclip2_vitl14_tcmp.log)
+OK finetune_resnet50_imagenet_indian
+OK finetune_resnet50_imagenet_tcmp
+finished Tue Oct 20 18:18:44 UTC 2026
+OK finetune_bioclip2_vitl14_indian
+OK finetune_bioclip2_vitl14_tcmp
+finished Tue Oct 20 22:05:50 UTC 2026
+start Wed Oct 21 08:52:58 UTC 2026  PY=python JOBS=8 DEVICE=cuda:0 HF_ENDPOINT=https://hf-mirror.com
+TCMP_ROOT=<TCMP_ROOT>  IND_ROOT=<INDIAN_ROOT>  CKPT=<BIOCLIP2_CHECKPOINT_DIR>/open_clip_model.safetensors
+features: tcmp=<TCMP_BIOCLIP2_FEATURES>/features.npy indian=<INDIAN_BIOCLIP2_FEATURES>/features.npy
+start Wed Oct 21 08:54:07 UTC 2026  PY=python JOBS=8 DEVICE=cuda:0 HF_ENDPOINT=https://hf-mirror.com
+TCMP_ROOT=<TCMP_ROOT>  IND_ROOT=<INDIAN_ROOT>  CKPT=<BIOCLIP2_CHECKPOINT_DIR>/open_clip_model.safetensors
+features: tcmp=<TCMP_BIOCLIP2_FEATURES>/features.npy indian=<INDIAN_BIOCLIP2_FEATURES>/features.npy
+OK extract_bioclip2_tcmp_dev
+OK extract_bioclip2_tcmp_dev
+OK dev_grid
+finished Wed Oct 21 09:36:45 UTC 2026
+OK dev_grid
+finished Wed Oct 21 09:36:45 UTC 2026

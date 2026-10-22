@@ -1,0 +1,89 @@
+{
+  "key": "closed_s5004_n4",
+  "dataset": "indian",
+  "encoder": "bioclip2",
+  "split": "closed",
+  "regime": "full_known",
+  "rho": 0.0,
+  "role": -1,
+  "seed": 5004,
+  "shot": 4,
+  "acc": {
+    "lr": 92.20647773279353,
+    "lp": 94.83805668016194,
+    "one_step_lp": 91.19433198380567,
+    "support_knn": 85.32388663967612,
+    "ncm": 90.9919028340081,
+    "fixed": 95.34412955465586,
+    "soft": 94.73684210526315
+  },
+  "gated": {
+    "lr": {
+      "none": {
+        "accuracy": 92.20647773279353,
+        "macro_recall": 92.39074231218075,
+        "worst_class_recall": 41.66666666666667
+      }
+    },
+    "lp": {
+      "none": {
+        "accuracy": 94.83805668016194,
+        "macro_recall": 94.54789379675793,
+        "worst_class_recall": 25.0
+      }
+    },
+    "one_step_lp": {
+      "none": {
+        "accuracy": 91.19433198380567,
+        "macro_recall": 91.87319307650372,
+        "worst_class_recall": 33.33333333333333
+      }
+    },
+    "support_knn": {
+      "none": {
+        "accuracy": 85.32388663967612,
+        "macro_recall": 85.44402335467987,
+        "worst_class_recall": 25.0
+      }
+    },
+    "ncm": {
+      "none": {
+        "accuracy": 90.9919028340081,
+        "macro_recall": 91.18756928916201,
+        "worst_class_recall": 25.0
+      }
+    },
+    "fixed": {
+      "none": {
+        "accuracy": 95.34412955465586,
+        "macro_recall": 95.22090094282011,
+        "worst_class_recall": 41.66666666666667
+      }
+    },
+    "soft": {
+      "none": {
+        "accuracy": 94.73684210526315,
+        "macro_recall": 94.61773408016558,
+        "worst_class_recall": 41.66666666666667
+      }
+    }
+  },
+  "timing": {
+    "graph_build_seconds": 0.8468506336212158,
+    "lp_seconds": 0.5315086841583252,
+    "fixed_seconds": 20.19706416130066,
+    "soft_seconds": 20.696781396865845
+  },
+  "dim": 768,
+  "n_train": 3955,
+  "reference_delta": {
+    "lr": 0.0,
+    "lp": 0.0,
+    "one_step_lp": 0.0,
+    "support_knn": 0.0,
+    "ncm": 0.0,
+    "fixed": 0.0,
+    "soft": 0.0
+  },
+  "seconds": 44.1637647151947
+}

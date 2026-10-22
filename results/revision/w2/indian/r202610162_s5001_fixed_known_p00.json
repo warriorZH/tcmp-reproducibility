@@ -1,0 +1,826 @@
+{
+  "key": "r202610162_s5001_fixed_known_p00",
+  "dataset": "indian",
+  "split": "open",
+  "regime": "fixed_known",
+  "rho": 0.0,
+  "role": 202610162,
+  "seed": 5001,
+  "known_cap": 1464,
+  "acc": {
+    "lr": 94.07894736842105,
+    "lp": 94.95614035087719,
+    "fixed": 96.71052631578947,
+    "fixed_msp": 96.71052631578947,
+    "fixed_lpmsp": 96.71052631578947,
+    "fixed_dist": 96.49122807017544,
+    "fixed_oracle": 96.71052631578947,
+    "soft": 95.83333333333334,
+    "soft_msp": 97.14912280701753,
+    "soft_lpmsp": 96.9298245614035,
+    "soft_dist": 96.49122807017544,
+    "soft_oracle": 95.83333333333334,
+    "fixed_t70": 95.83333333333334,
+    "fixed_t95": 97.36842105263158
+  },
+  "gated": {
+    "lr": {
+      "lr_msp": {
+        "accuracy": 94.07894736842105,
+        "macro_recall": 94.36566251783644,
+        "worst_class_recall": 64.28571428571429,
+        "bottom_decile": 72.73291925465838,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01968915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.8935743965176098,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 94.07894736842105,
+        "macro_recall": 94.36566251783644,
+        "worst_class_recall": 64.28571428571429,
+        "bottom_decile": 72.73291925465838,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.020100502512562814,
+        "macro_accepted_known_risk": 0.01658874894169012,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.3543046357615894,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.7987897375016488,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "lp": {
+      "lr_msp": {
+        "accuracy": 94.95614035087719,
+        "macro_recall": 95.17166878379693,
+        "worst_class_recall": 64.28571428571429,
+        "bottom_decile": 71.631000578369,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01968915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.8978985292177813,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 94.95614035087719,
+        "macro_recall": 95.17166878379693,
+        "worst_class_recall": 64.28571428571429,
+        "bottom_decile": 71.631000578369,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.01256281407035176,
+        "macro_accepted_known_risk": 0.011460543813484991,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34933774834437087,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.811547783933518,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed": {
+      "lr_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.909902222661918,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8139674845007254,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_msp": {
+      "lr_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.909902222661918,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8139674845007254,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_lpmsp": {
+      "lr_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.82494075972336,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.98678133460743,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01843915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9102361166073079,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.82494075972336,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.98678133460743,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8144868750824429,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_dist": {
+      "lr_msp": {
+        "accuracy": 96.49122807017544,
+        "macro_recall": 96.60858465206292,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9090406938398629,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.49122807017544,
+        "macro_recall": 96.60858465206292,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8142642791188496,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_oracle": {
+      "lr_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.909902222661918,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.71052631578947,
+        "macro_recall": 96.93642347990175,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8139674845007254,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "soft": {
+      "lr_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.96915162132552,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.65233317407231,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01843915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9059284724970321,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.96915162132552,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.65233317407231,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.812025953040496,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "soft_msp": {
+      "lr_msp": {
+        "accuracy": 97.14912280701753,
+        "macro_recall": 97.24801768280027,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 79.55088389870998,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9129732225300092,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 97.14912280701753,
+        "macro_recall": 97.24801768280027,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 79.55088389870998,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8162387877588707,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "soft_lpmsp": {
+      "lr_msp": {
+        "accuracy": 96.9298245614035,
+        "macro_recall": 97.08135101613362,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 79.55088389870998,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01843915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9103144374093128,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.9298245614035,
+        "macro_recall": 97.08135101613362,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 79.55088389870998,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8147795475530932,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "soft_dist": {
+      "lr_msp": {
+        "accuracy": 96.49122807017544,
+        "macro_recall": 96.60858465206292,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9090406938398629,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 96.49122807017544,
+        "macro_recall": 96.60858465206292,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8142642791188496,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "soft_oracle": {
+      "lr_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.96915162132552,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.65233317407231,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.017326732673267328,
+        "macro_accepted_known_risk": 0.01843915343915344,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.2335907335907336,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9059284724970321,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.96915162132552,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 76.65233317407231,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.812025953040496,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_t70": {
+      "lr_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.85766890114715,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.01485148514851485,
+        "macro_accepted_known_risk": 0.016355820105820106,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.23166023166023167,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.906728169106978,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 95.83333333333334,
+        "macro_recall": 95.85766890114715,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 78.10160853639115,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.007537688442211055,
+        "macro_accepted_known_risk": 0.0064694564694564695,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.34602649006622516,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8124505342303125,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    },
+    "fixed_t95": {
+      "lr_msp": {
+        "accuracy": 97.36842105263158,
+        "macro_recall": 97.48268880877578,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 82.42466068553026,
+        "known_coverage": 0.8859649122807017,
+        "accepted_known_risk": 0.012376237623762377,
+        "macro_accepted_known_risk": 0.014272486772486773,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.22972972972972974,
+        "unknown_acceptance": 0.21428571428571427,
+        "oscr": 0.9131257419865453,
+        "pool_seen_unknown_acceptance": 0.21095890410958903,
+        "query_only_unknown_acceptance": 0.2215568862275449
+      },
+      "lp_msp": {
+        "accuracy": 97.36842105263158,
+        "macro_recall": 97.48268880877578,
+        "worst_class_recall": 71.42857142857143,
+        "bottom_decile": 82.42466068553026,
+        "known_coverage": 0.8728070175438597,
+        "accepted_known_risk": 0.010050251256281407,
+        "macro_accepted_known_risk": 0.00843024078318196,
+        "classes_with_no_accepted_known": 0,
+        "overall_accepted_error": 0.347682119205298,
+        "unknown_acceptance": 0.38721804511278196,
+        "oscr": 0.8155256562458778,
+        "pool_seen_unknown_acceptance": 0.38082191780821917,
+        "query_only_unknown_acceptance": 0.40119760479041916
+      }
+    }
+  },
+  "stats": {
+    "fixed": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1412,
+      "weight_sum": 1412.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9723796033994334,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1281,
+          "weight_sum": 1281.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1395,
+          "weight_sum": 1395.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1412,
+          "weight_sum": 1412.0
+        }
+      ]
+    },
+    "fixed_msp": {
+      "kept_known_fraction": 0.9747267759562842,
+      "kept_unknown_fraction": null,
+      "selected": 1414,
+      "weight_sum": 1414.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9724186704384724,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1312,
+          "selected": 1278,
+          "weight_sum": 1278.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1414,
+          "selected": 1395,
+          "weight_sum": 1395.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1427,
+          "selected": 1414,
+          "weight_sum": 1414.0
+        }
+      ]
+    },
+    "fixed_lpmsp": {
+      "kept_known_fraction": 0.8825136612021858,
+      "kept_unknown_fraction": null,
+      "selected": 1287,
+      "weight_sum": 1287.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9914529914529915,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1292,
+          "selected": 1218,
+          "weight_sum": 1218.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1292,
+          "selected": 1282,
+          "weight_sum": 1282.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1292,
+          "selected": 1287,
+          "weight_sum": 1287.0
+        }
+      ]
+    },
+    "fixed_dist": {
+      "kept_known_fraction": 0.9064207650273224,
+      "kept_unknown_fraction": null,
+      "selected": 1310,
+      "weight_sum": 1310.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9748091603053435,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1327,
+          "selected": 1233,
+          "weight_sum": 1233.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1327,
+          "selected": 1300,
+          "weight_sum": 1300.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1327,
+          "selected": 1310,
+          "weight_sum": 1310.0
+        }
+      ]
+    },
+    "fixed_oracle": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1412,
+      "weight_sum": 1412.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9723796033994334,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1281,
+          "weight_sum": 1281.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1395,
+          "weight_sum": 1395.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1412,
+          "weight_sum": 1412.0
+        }
+      ]
+    },
+    "soft": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1464,
+      "weight_sum": 1426.1107319126004,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9643307750509719,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1332.886336897608
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1410.7147799256672
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1426.1107319126004
+        }
+      ]
+    },
+    "soft_msp": {
+      "kept_known_fraction": 0.9733606557377049,
+      "kept_unknown_fraction": null,
+      "selected": 1425,
+      "weight_sum": 1403.8069553656248,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9756131104917284,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1312,
+          "selected": 1312,
+          "weight_sum": 1243.2532021558745
+        },
+        {
+          "iteration": 1,
+          "kept": 1413,
+          "selected": 1413,
+          "weight_sum": 1373.3407094803729
+        },
+        {
+          "iteration": 2,
+          "kept": 1425,
+          "selected": 1425,
+          "weight_sum": 1403.8069553656248
+        }
+      ]
+    },
+    "soft_lpmsp": {
+      "kept_known_fraction": 0.8825136612021858,
+      "kept_unknown_fraction": null,
+      "selected": 1292,
+      "weight_sum": 1286.2061572444734,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9914478488941693,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1292,
+          "selected": 1292,
+          "weight_sum": 1213.8502665662286
+        },
+        {
+          "iteration": 1,
+          "kept": 1292,
+          "selected": 1292,
+          "weight_sum": 1277.2046048972102
+        },
+        {
+          "iteration": 2,
+          "kept": 1292,
+          "selected": 1292,
+          "weight_sum": 1286.2061572444734
+        }
+      ]
+    },
+    "soft_dist": {
+      "kept_known_fraction": 0.9064207650273224,
+      "kept_unknown_fraction": null,
+      "selected": 1327,
+      "weight_sum": 1310.449272544298,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9738263282164487,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1327,
+          "selected": 1327,
+          "weight_sum": 1242.001287317863
+        },
+        {
+          "iteration": 1,
+          "kept": 1327,
+          "selected": 1327,
+          "weight_sum": 1296.7363998578953
+        },
+        {
+          "iteration": 2,
+          "kept": 1327,
+          "selected": 1327,
+          "weight_sum": 1310.449272544298
+        }
+      ]
+    },
+    "soft_oracle": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1464,
+      "weight_sum": 1426.1107319126004,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9643307750509719,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1332.886336897608
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1410.7147799256672
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1464,
+          "weight_sum": 1426.1107319126004
+        }
+      ]
+    },
+    "fixed_t70": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1444,
+      "weight_sum": 1444.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9591412742382271,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1381,
+          "weight_sum": 1381.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1438,
+          "weight_sum": 1438.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1444,
+          "weight_sum": 1444.0
+        }
+      ]
+    },
+    "fixed_t95": {
+      "kept_known_fraction": 1.0,
+      "kept_unknown_fraction": null,
+      "selected": 1382,
+      "weight_sum": 1382.0,
+      "unknown_weight_fraction": 0.0,
+      "weighted_precision": 0.9782923299565847,
+      "history": [
+        {
+          "iteration": 0,
+          "kept": 1464,
+          "selected": 1220,
+          "weight_sum": 1220.0
+        },
+        {
+          "iteration": 1,
+          "kept": 1464,
+          "selected": 1358,
+          "weight_sum": 1358.0
+        },
+        {
+          "iteration": 2,
+          "kept": 1464,
+          "selected": 1382,
+          "weight_sum": 1382.0
+        }
+      ]
+    }
+  },
+  "cuts": {
+    "lr": 0.5042315286640027,
+    "lp": 0.6040423894789321,
+    "dist": 0.8220674276351929
+  },
+  "reference_delta": {
+    "lr": 0.0,
+    "lp": 0.0,
+    "fixed": 0.0,
+    "soft": 0.0
+  },
+  "seconds": 36.51420474052429
+}
